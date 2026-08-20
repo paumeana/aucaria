@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Servicios digitales de Aucaria Studio: diseño web, identidad visual, redes sociales y e-commerce." />
+  <title>Aucaria Studio | Servicios Digitales</title>
+
+  <link rel="preload" as="image" href="img/logo-aucaria-blanco.png" fetchpriority="high">
+
+  <!-- Precarga del banner principal para mejorar el LCP -->
+  <link rel="preload" as="image" href="img/banner-mobile.png" media="(max-width: 600px)" fetchpriority="high">
+  <link rel="preload" as="image" href="img/banner-aucaria.png" media="(min-width: 601px)" fetchpriority="high">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="preloader-active">
+
+  <!-- =========================
+       PRELOADER AUCARIA
+  ========================== -->
+  <div
+    id="aucaria-preloader"
+    class="aucaria-preloader"
+    role="status"
+    aria-label="Cargando Aucaria Studio"
+  >
+    <div class="aucaria-preloader-inner">
+      <div class="aucaria-preloader-halo" aria-hidden="true"></div>
+      <img
+        src="img/logo-aucaria-blanco.png"
+        alt=""
+        class="aucaria-preloader-logo"
+        fetchpriority="high"
+        decoding="async"
+      >
+    </div>
+  </div>
+
+  <noscript>
+    <style>
+      .aucaria-preloader { display: none !important; }
+      body.preloader-active { overflow: auto !important; }
+    </style>
+  </noscript>
+
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+  <header class="site-header">
+
+    <div class="logo-wrap">
+      <a href="#inicio" class="logo-link" aria-label="Ir al inicio">
+        <!-- Reemplazá img/logo.svg por tu logo -->
+        <img src="img/logo-aucaria-blanco.png" alt="Aucaria Studio" class="site-logo">
+      </a>
+    </div>
+
+    <nav class="main-nav" aria-label="Navegación principal">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="sr-only">Abrir menú</span>
+      </button>
+
+      <ul id="menu-principal" class="menu-list">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#kits">Kits Digitales</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#aucaria">Aucaria</a></li>
+        <li><a href="#biblioteca">Biblioteca</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+
+  <!-- =========================
+       BANNER SLIDER
+  ========================== -->
+  <main id="inicio">
+
+    <section class="hero-slider" aria-label="Presentación">
+      <div class="slider-track">
+
+        <article class="slide active">
+          <picture class="hero-picture">
+            <source media="(max-width: 600px)" srcset="img/banner-mobile.png">
+            <img src="img/banner-aucaria.png" alt="Aucaria Studio - Construyamos tu universo digital" fetchpriority="high" decoding="async">
+          </picture>
+        </article>
+
+        <!--article class="slide">
+          <img src="img/banner-aucaria2.png" alt="Diseño web para marcas y proyectos">
+          <div class="slide-overlay">
+            
+          </div>
+        </article-->
+
+        <!--article class="slide">
+          <img src="img/banner-3.svg" alt="Identidad visual y redes sociales">
+          <div class="slide-overlay">
+            <span>IDENTIDAD + CONTENIDO</span>
+            <h2>Coherencia visual en cada punto de contacto.</h2>
+            <p>Construimos un sistema gráfico listo para crecer con tu proyecto.</p>
+            <a href="#servicios">Explorar servicios <span>↘</span></a>
+          </div>
+        </article-->
+
+      </div>
+
+      <!--button class="slider-arrow slider-prev" type="button" aria-label="Banner anterior">←</button>
+      <button class="slider-arrow slider-next" type="button" aria-label="Banner siguiente">→</button>
+
+      <div class="slider-dots" aria-label="Selector de banners">
+        <button class="slider-dot active" type="button" aria-label="Ver banner 1"></button>
+        <button class="slider-dot" type="button" aria-label="Ver banner 2"></button-->
+      </div>
+    </section>
+
+
+    <!-- =========================
+         BARRA DE ANUNCIOS
+    ========================== -->
+    <section class="announcement-bar" aria-label="Servicios destacados">
+
+      <svg class="announcement-river-svg" viewBox="0 0 1600 150" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <path
+            id="announcementRiverPath"
+            d="M -110 78 C 120 50, 280 102, 470 76 C 655 50, 820 100, 1010 75 C 1195 49, 1360 98, 1710 73"
+          />
+
+          <linearGradient id="announcementRiverGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+            <stop offset="0%" stop-color="#123b3f" stop-opacity="0.98" />
+            <stop offset="52%" stop-color="#0e3235" stop-opacity="1" />
+            <stop offset="100%" stop-color="#123b3f" stop-opacity="0.98" />
+          </linearGradient>
+        </defs>
+
+        <use href="#announcementRiverPath" class="announcement-river-shadow" />
+        <use href="#announcementRiverPath" class="announcement-river-band" />
+
+        <!-- JS crea acá tandas idénticas y las recicla en loop -->
+        <g class="announcement-river-text-layer"></g>
+      </svg>
+
+    </section>
+
+
+<section class="aucaria-kits" id="kits">
+
+  <!-- DECORACIONES -->
+  <span class="kits-floating kits-floating-1">✦</span>
+  <span class="kits-floating kits-floating-2">✦</span>
+  <span class="kits-floating kits-floating-3">✦</span>
+
+  <!-- JARDÍN FLOTANTE DE KITS -->
+  <span class="kits-nature-float kits-flower-1" aria-hidden="true">✿</span>
+  <span class="kits-nature-float kits-flower-2" aria-hidden="true">❀</span>
+  <span class="kits-nature-float kits-flower-3" aria-hidden="true">✾</span>
+
+  <span class="kits-nature-float kits-pine-1" aria-hidden="true">🌲</span>
+  <span class="kits-nature-float kits-pine-2" aria-hidden="true">🌲</span>
+
+  <span class="kits-nature-float kits-butterfly-1" aria-hidden="true">🦋</span>
+  <span class="kits-nature-float kits-butterfly-2" aria-hidden="true">🦋</span>
+
+  <span class="kits-nature-float kits-ladybug-1" aria-hidden="true">🐞</span>
+  <span class="kits-nature-float kits-ladybug-2" aria-hidden="true">🐞</span>
+
+  <div class="kits-glow kits-glow-1"></div>
+  <div class="kits-glow kits-glow-2"></div>
+
+
+  <div class="kits-container">
+
+
+
+    <!-- =========================
+         CONTROLES SLIDER
+    ========================== -->
+
+    <div class="kits-slider-top">
+
+      <div>
+        <span class="kits-small-title idea-highlight kits-title-highlight" data-text="ELEGÍ TU KIT">ELEGÍ TU KIT</span>
+        <h3>Combinamos los servicios que necesitás para hacerlo más simple.</h3>
+      </div>
+
+
+      <div class="kits-controls">
+
+        <button
+          class="kits-arrow kits-prev"
+          type="button"
+          aria-label="Kit anterior"
+        >
+          ←
+        </button>
+
+        <button
+          class="kits-arrow kits-next"
+          type="button"
+          aria-label="Siguiente kit"
+        >
+          →
+        </button>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         KITS
+    ========================== -->
+
+    <div class="kits-slider">
+
+      <div class="kits-track">
+
+
+        <!-- =====================================
+             KIT REDES
+        ====================================== -->
+
+        <article class="kit-card kit-card-redes">
+
+          <div class="kit-card-decoration">✦</div>
+
+          <div class="kit-card-top">
+
+            <!--span class="kit-category">
+              REDES SOCIALES
+            </span->
+
+            <span class="kit-number">
+              KIT 01
+            </span-->
+
+          </div>
+
+
+          <div class="kit-main-icon">
+
+            <img src="img/icono/kitredes.png" />
+        
+
+          </div>
+
+
+          <h3>Kit Redes</h3>
+
+          <p class="kit-description">
+            Una base visual completa para que tu perfil
+            se vea coherente, profesional y listo para comunicar.
+          </p>
+
+
+          <div class="kit-divider"></div>
+
+
+          <span class="kit-includes-title">
+            INCLUYE
+          </span>
+
+
+          <ul class="kit-list">
+
+            <li>
+              <span>✓</span>
+              Post para feed y portadas 
+            </li>
+
+            <li>
+              <span>✓</span>
+              Historias
+            </li>
+
+            <li>
+              <span>✓</span>
+              Diseño destacadas
+            </li>
+
+            <li>
+              <span>✓</span>
+              Optimización de biografía
+            </li>
+
+          </ul>
+
+
+          <div class="kit-card-bottom">
+
+            <span class="kit-detail">
+              ✦ Todo listo para empezar
+            </span>
+
+            <a href="#" class="kit-button">
+              Ver Kit
+              <span>→</span>
+            </a>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =====================================
+             KIT WEB
+        ====================================== -->
+
+        <article class="kit-card kit-card-featured">
+
+          <span class="kit-popular">
+            ✦ eCommerce
+          </span>
+
+          <div class="kit-card-decoration">✦</div>
+
+
+          <div class="kit-card-top">
+
+            <!--span class="kit-category">
+              PRESENCIA DIGITAL
+            </span-->
+
+          </div>
+
+
+          <div class="kit-main-icon" style="width: 190px; height: 190px;">
+
+            <img src="img/icono/kitweb.png" />
+        
+
+          </div>
+
+
+          <h3>Kit Web</h3>
+
+          <p class="kit-description">
+            Tu ecosistema digital preparado para presentar
+            tu marca y empezar a vender online.
+          </p>
+
+
+          <div class="kit-divider"></div>
+
+
+          <span class="kit-includes-title">
+            INCLUYE
+          </span>
+
+
+          <ul class="kit-list">
+
+            <li>
+              <span>✓</span>
+              Landing Page
+            </li>
+
+            <li>
+              <span>✓</span>
+              Tienda Online
+            </li>
+
+            <li>
+              <span>✓</span>
+              Diseño responsive
+            </li>
+
+            <li>
+              <span>✓</span>
+              Integración con WhatsApp
+            </li>
+
+          </ul>
+
+
+          <div class="kit-card-bottom">
+
+            <span class="kit-detail">
+              ✿ Presencia + venta
+            </span>
+
+            <a href="#" class="kit-button">
+              Ver Kit
+              <span>→</span>
+            </a>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =====================================
+             KIT MARCA
+        ====================================== -->
+
+        <article class="kit-card kit-card-marca">
+
+          <div class="kit-card-decoration">✦</div>
+
+
+          <div class="kit-card-top">
+
+            <!--span class="kit-category">
+              IDENTIDAD + PAPELERÍA
+            </span-->
+
+            <span class="kit-number">
+              KIT 03
+            </span>
+
+          </div>
+
+
+          <div class="kit-main-icon">
+
+            <img src="img/icono/kitmarca.png" />
+        
+
+          </div>
+
+
+          <h3>Kit Marca</h3>
+
+          <p class="kit-description">
+            Todo lo necesario para construir una identidad
+            coherente y llevarla a tus primeras piezas.
+          </p>
+
+
+          <div class="kit-divider"></div>
+
+
+          <span class="kit-includes-title">
+            INCLUYE
+          </span>
+
+
+          <ul class="kit-list">
+
+            <li>
+              <span>✓</span>
+              Identidad visual
+            </li>
+
+            <li>
+              <span>✓</span>
+              Tarjeta de presentación
+            </li>
+
+            <li>
+              <span>✓</span>
+              Flyer de servicios o productos
+            </li>
+
+            <li>
+              <span>✓</span>
+              Diseño de etiquetas
+            </li>
+
+          </ul>
+
+
+          <div class="kit-card-bottom">
+
+            <span class="kit-detail">
+              ❀ Una marca más coherente
+            </span>
+
+            <a href="#" class="kit-button">
+              Ver Kit
+              <span>→</span>
+            </a>
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         CIERRE
+    ========================== -->
+
+    <div class="kits-footer">
+
+      <span class="kits-footer-flower">
+        ✿
+      </span>
+
+      <div>
+        <span>¿No encontrás exactamente lo que necesitás?</span>
+
+        <p>
+          También podés contratar cada servicio
+          de manera individual.
+        </p>
+      </div>
+
+      <a href="#servicios">
+        Ver todos los servicios →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+
+    
+    
+
+    <!-- =========================
+         SERVICIOS
+    ========================== -->
+    <section class="aucaria-services" id="servicios">
+
+  <div class="aucaria-services-header">
+    <span class="aucaria-eyebrow">SERVICIOS INDIVIDUALES</span>
+    <h2>Tu marca puede <br>crecer paso a paso.</h2>
+    <p>
+      Elegí lo que necesitás hoy y empezá a transformar tu presencia digital a tu ritmo. Cada servicio está
+       pensado para funcionar por sí solo y acompañarte mientras construís algo más grande.
+    </p>
+  </div>
+
+
+  <!-- SERVICIOS PRINCIPALES -->
+  <div class="aucaria-main-services">
+
+    <!-- DISEÑO WEB -->
+    <article class="aucaria-service-card card-1">
+
+      <div class="service-icon">
+        <img src="img/icono/icono-disenoweb.png" />
+      </div>
+
+      <h3>Diseño Web</h3>
+
+      <p>
+        → Landing Page<br>
+        → Sitio Web Completo<br>
+        → Diseño de banners
+      </p>
+      <span class="service-link"> <a href="https://aucariastudio.mitiendanube.com/diseno-web-aucaria">Desde $80.000</a>   →</span>
+
+    </article>
+
+
+    <!-- E-COMMERCE -->
+    <article class="aucaria-service-card card-2">
+
+      <div class="service-icon">
+        <img src="img/icono/icono-ecommerce.png" />
+      </div>
+
+      <h3>Tiendas Online</h3>
+
+      <p>
+        → Productos físicos<br>
+        → Productos digitales
+      </p>
+
+      <span class="service-link">Desde $150.000 →</span>
+
+    </article>
+
+
+    <!-- IDENTIDAD -->
+    <article class="aucaria-service-card card-3">
+
+      <div class="service-icon">
+        <img src="img/icono/icono-diseñoredes.png" />
+      </div>
+
+      <h3>Diseño para redes</h3>
+
+      <p>
+        → Feed instagram<br>
+        → Historias<br>
+        → Portadas destacadas
+      </p>
+
+      <span class="service-link">Desde $40.000 →</span>
+
+    </article>
+
+
+    <!-- REDES -->
+    <article class="aucaria-service-card card-4">
+
+      <div class="service-icon">
+        <img src="img/icono/icono-mkt.png" />
+      </div>
+
+      <h3>Marketing</h3>
+
+      <p>
+        → E-mail Marketing<br>
+        → Creativos para pauta publicitaria<br>
+        → Estrategia creación de contenido audiovisual
+      </p>
+
+      <span class="service-link">Desde $80.000 →</span>
+
+    </article>
+
+
+    <!-- DISEÑO GRÁFICO -->
+    <article class="aucaria-service-card card-5">
+
+      <div class="service-icon">
+        <img src="img/icono/icono-grafico.png" />
+      </div>
+
+      <h3>Diseño Gráfico</h3>
+
+      <p> 
+        →identidad visual (logo, tipografia, paleta de colores)<br>
+        →tarjetas <br>
+        →flyers<br>
+        →etiquetas<br>
+        →invitaciones
+
+      </p>
+
+      <span class="service-link">Desde $10.000 →</span>
+
+    </article>
+
+  </div>
+
+
+  <!-- TICKERS / MICROSERVICIOS -->
+  <div class="aucaria-marquees">
+
+    <!-- FILA 1 -->
+    <div class="aucaria-marquee marquee-left">
+
+      <div class="marquee-track">
+
+        <div class="marquee-group">
+          <span>✦ Landing Pages</span>
+          <span>✦ Sitios Institucionales</span>
+          <span>✦ Tiendas Online</span>
+          <span>✦ Diseño Responsive</span>
+          <span>✦ Rediseño Web</span>
+          <span>✦ Tienda Online</span>
+          <span>✦ Carga de Productos</span>
+          <span>✦ Organización de Categorías</span>
+          <span>✦ Banners Web</span>
+          <span>✦ Íconos Web</span>
+          <span>✦ Sellos Promocionales</span>
+          <span>✦ Optimización UX/UI</span>
+          <span>✦ SEO Básico</span>
+        </div>
+
+        <!-- DUPLICADO PARA LOOP INFINITO -->
+        <div class="marquee-group" aria-hidden="true">
+          <span>✦ Landing Pages</span>
+          <span>✦ Sitios Institucionales</span>
+          <span>✦ Tiendas Online</span>
+          <span>✦ Diseño Responsive</span>
+          <span>✦ Rediseño Web</span>
+          <span>✦ Tienda Online</span>
+          <span>✦ Carga de Productos</span>
+          <span>✦ Organización de Categorías</span>
+          <span>✦ Banners Web</span>
+          <span>✦ Íconos Web</span>
+          <span>✦ Sellos Promocionales</span>
+          <span>✦ Optimización UX/UI</span>
+          <span>✦ SEO Básico</span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- FILA 2 -->
+    <div class="aucaria-marquee marquee-right">
+
+      <div class="marquee-track">
+
+        <div class="marquee-group">
+          <span>✦ Diseño de Feed</span>
+          <span>✦ Carruseles</span>
+          <span>✦ Historias</span>
+          <span>✦ Portadas Destacadas</span>
+          <span>✦ Plantillas Canva</span>
+          <span>✦ Diseño de Flyers</span>
+          <span>✦ Creatividades para Ads</span>
+          <span>✦ Email Marketing</span>
+          <span>✦ Newsletters</span>
+          <span>✦ Campañas Promocionales</span>
+          <span>✦ Diseño de Papelería</span>
+          <span>✦ Tarjetas</span>
+          <span>✦ Etiquetas</span>
+          <span>✦ Stickers</span>
+          <span>✦ Packaging</span>
+          <span>✦ Catálogos</span>
+          <span>✦ Presentaciones</span>
+          <span>✦ PDFs Comerciales</span>
+          <span>✦ Media Kits</span>
+          <span>✦ Firma de Email</span>
+          <span>✦ Link in Bio</span>
+          <span>✦ Kit WhatsApp Business</span>
+          <span>✦ Identidad Visual</span>
+          <span>✦ Diseño de Logo</span>
+          <span>✦ Paleta de Colores</span>
+          <span>✦ Selección Tipográfica</span>
+          <span>✦ Manual de Marca</span>
+          <span>✦ Dirección Visual</span>
+        </div>
+
+        <!-- DUPLICADO -->
+        <div class="marquee-group" aria-hidden="true">
+          <span>✦ Diseño de Feed</span>
+          <span>✦ Carruseles</span>
+          <span>✦ Historias</span>
+          <span>✦ Portadas Destacadas</span>
+          <span>✦ Plantillas Canva</span>
+          <span>✦ Diseño de Flyers</span>
+          <span>✦ Creatividades para Ads</span>
+          <span>✦ Email Marketing</span>
+          <span>✦ Newsletters</span>
+          <span>✦ Campañas Promocionales</span>
+          <span>✦ Diseño de Papelería</span>
+          <span>✦ Tarjetas</span>
+          <span>✦ Etiquetas</span>
+          <span>✦ Stickers</span>
+          <span>✦ Packaging</span>
+          <span>✦ Catálogos</span>
+          <span>✦ Presentaciones</span>
+          <span>✦ PDFs Comerciales</span>
+          <span>✦ Media Kits</span>
+          <span>✦ Firma de Email</span>
+          <span>✦ Link in Bio</span>
+          <span>✦ Kit WhatsApp Business</span>
+          <span>✦ Identidad Visual</span>
+          <span>✦ Diseño de Logo</span>
+          <span>✦ Paleta de Colores</span>
+          <span>✦ Selección Tipográfica</span>
+          <span>✦ Manual de Marca</span>
+          <span>✦ Dirección Visual</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="aucaria-contact" id="contacto">
+
+  <!-- ==================================================
+       ELEMENTOS FLOTANTES DECORATIVOS
+  =================================================== -->
+
+  <span class="contact-float float-butterfly-1">🦋</span>
+  <span class="contact-float float-butterfly-2">🦋</span>
+
+  <span class="contact-float float-flower-1">✿</span>
+  <span class="contact-float float-flower-2">❀</span>
+  <span class="contact-float float-flower-3">✾</span>
+
+  <span class="contact-float float-ladybug-1">🐞</span>
+  <span class="contact-float float-ladybug-2">🐞</span>
+
+  <span class="contact-float float-heart-1">♡</span>
+  <span class="contact-float float-heart-2">♥</span>
+
+  <span class="contact-float float-star-1">✦</span>
+  <span class="contact-float float-star-2">✧</span>
+
+
+  <!-- manchas luminosas -->
+  <div class="contact-glow contact-glow-1"></div>
+  <div class="contact-glow contact-glow-2"></div>
+
+
+  <div class="contact-container">
+
+
+    <!-- ==================================================
+         ENCABEZADO
+    =================================================== -->
+
+    <div class="contact-heading">
+
+      <span class="contact-eyebrow">
+        ✿ TRABAJEMOS JUNTAS
+      </span>
+
+      <h2>
+        ¿Nada de lo anterior<br>
+        <span class="contact-idea-line">encaja con <span class="idea-highlight" data-text="tu idea?">tu idea?</span></span>
+      </h2>
+
+      <p class="contact-intro">
+        Las ideas más lindas a veces
+        <strong>no entran en una cajita.</strong>
+      </p>
+
+      <p class="contact-description">
+        Si después de recorrer Aucaria tenés en mente algo
+        completamente personalizado, contame tu idea,
+        qué estás imaginando y por qué te gustaría trabajar conmigo.
+      </p>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         ZONA CENTRAL
+    =================================================== -->
+
+    <div class="contact-content">
+
+
+      <!-- ================================================
+           LADO DECORATIVO
+      ================================================= -->
+
+      <div class="contact-garden">
+
+        <div class="garden-message">
+
+          <span class="garden-small">
+            PROYECTOS PERSONALIZADOS
+          </span>
+
+          <div class="garden-note garden-note-1">
+          <span>✦</span>
+          ideas raras<br>
+          bienvenidas
+        </div>
+
+
+          <h3>
+            Contame eso que<br>
+            tenés en mente.
+            <span>♥</span>
+          </h3>
+
+          <p>
+            Puede ser una web distinta, una identidad,
+            una campaña, una idea rara, una mezcla de servicios
+            o algo que todavía ni siquiera sabés cómo llamar.
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ================================================
+           FORMULARIO
+      ================================================= -->
+
+      <div class="contact-form-card">
+
+        <!-- pequeño encabezado del form -->
+
+        <div class="form-card-header">
+
+          <div class="form-heart">
+            ♡
+          </div>
+
+          <div>
+            <span>MENSAJITO PARA AUCARIA</span>
+            <h3>Hola Pau...</h3>
+          </div>
+
+          <span class="form-mini-flower">✿</span>
+
+        </div>
+
+
+
+        <form class="aucaria-form" action="#" method="post">
+
+
+          <!-- NOMBRE -->
+
+          <div class="form-group">
+
+            <label for="nombre">
+              Tu nombre
+              <span>✿</span>
+            </label>
+
+            <div class="input-wrapper">
+
+              <span class="input-icon">
+                ♡
+              </span>
+
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder="¿Cómo te llamás?"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <!-- MAIL -->
+
+          <div class="form-group">
+
+            <label for="email">
+              Tu mail
+              <span>✦</span>
+            </label>
+
+            <div class="input-wrapper">
+
+              <span class="input-icon">
+                ✉
+              </span>
+
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="hola@tumarca.com"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <!-- INSTAGRAM -->
+
+          <div class="form-group">
+
+            <label for="instagram">
+              Instagram de tu emprendimiento
+              <span>❀</span>
+            </label>
+
+            <div class="input-wrapper">
+
+              <span class="input-icon">
+                @
+              </span>
+
+              <input
+                type="text"
+                id="instagram"
+                name="instagram"
+                placeholder="@tuemprendimiento"
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <!-- MENSAJE -->
+
+          <div class="form-group form-group-message">
+
+            <label for="mensaje">
+              Ahora sí... contame tu idea
+              <span>🦋</span>
+            </label>
+
+            <div class="textarea-wrapper">
+
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="6"
+                placeholder="Tengo una idea que sería más o menos así..."
+                required
+              ></textarea>
+
+              <span class="textarea-flower">
+                ✿
+              </span>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- BOTÓN -->
+
+          <button
+            type="submit"
+            class="contact-submit"
+          >
+
+            <span class="submit-flower">
+              ✿
+            </span>
+
+            <span class="submit-text">
+              Mandar mensajito
+            </span>
+
+            <span class="submit-arrow">
+              →
+            </span>
+
+          </button>
+
+
+          <!-- MINI ACLARACIÓN -->
+
+          <div class="form-love-note">
+
+            <span class="love-note-heart">
+              ♥
+            </span>
+
+            <p>
+              Y si simplemente querés dejarme un saludo
+              y contarme que llegaste hasta acá,
+              <strong>también podés completar el form.</strong>
+              Me va a encantar leerte.
+            </p>
+
+          </div>
+
+
+        </form>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         CIERRE
+    =================================================== -->
+
+    <div class="contact-ending">
+
+      <span>✿</span>
+
+      <p>
+        Gracias por recorrer este pequeño universo.
+      </p>
+
+      <span>✿</span>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer class="aucaria-footer">
+
+  <!-- ESTRELLITAS DECORATIVAS -->
+  <span class="footer-star footer-star-1">✦</span>
+  <span class="footer-star footer-star-2">✧</span>
+  <span class="footer-star footer-star-3">✦</span>
+  <span class="footer-star footer-star-4">⋆</span>
+  <span class="footer-star footer-star-5">✧</span>
+
+  <div class="aucaria-footer-content">
+
+    <span class="footer-mini">
+      AUCARIA STUDIO · 2026
+    </span>
+
+    <p class="footer-big-copy">
+      Creado por <strong>Pau Meana</strong>,
+      <span class="footer-heart">♥</span>
+    </p>
+
+    <div class="footer-magic-line">
+      <span>✦</span>
+      <span>✧</span>
+      <span>✦</span>
+    </div>
+
+  </div>
+
+</footer>
+
+  <script src="script.js" defer></script>
+
+</body>
+</html>

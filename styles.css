@@ -1,0 +1,8464 @@
+:root {
+  --section-light-bg: #f4f6f5;
+  --verde: #123b3f;
+  --verde-profundo: #0e3235;
+  --violeta: #472b51;
+  --lavanda: #a5799d;
+  --oscuro: #313031;
+  --crema: #f4f0eb;
+  --blanco: #faf9f7;
+  --linea: rgba(49, 48, 49, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--crema);
+  color: var(--oscuro);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.site-header {
+  background-color: #000;
+  border-top: 4px solid #123b3f;
+  position: relative;
+  z-index: 20;
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 500px;
+  left: 50%;
+  top: -380px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle,
+    rgba(18, 59, 63, .35) 0%,
+    rgba(18, 59, 63, .10) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.site-header > * {
+  position: relative;
+  z-index: 1;
+}
+
+.logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 72px;
+}
+
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-logo {
+  width: auto;
+  height: 82px;
+  max-width: 190px;
+  object-fit: contain;
+}
+
+.main-nav {
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-block: 4px solid #123b3f;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(22px, 3.2vw, 48px);
+  padding: 20px 0 18px;
+}
+
+.menu-list a {
+  color: #fff;
+  position: relative;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: opacity .25s ease;
+}
+
+.menu-list a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .3s ease;
+}
+
+.menu-list a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menu-toggle > span:not(.sr-only) {
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--verde-profundo);
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+
+/* ==================================================
+   HERO / SLIDER
+================================================== */
+
+.hero-slider {
+  position: relative;
+  width: 100%;
+  background: var(--verde-profundo);
+  overflow: hidden;
+  aspect-ratio: 2560 / 958;
+}
+
+.slider-track,
+.slide {
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .75s ease, visibility .75s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.slide > img,
+.slide > .hero-picture,
+.slide > .hero-picture > img {
+  width: 100%;
+  height: 100%;
+}
+
+.slide > .hero-picture {
+  display: block;
+}
+
+.slide > img,
+.slide > .hero-picture > img {
+  object-fit: cover;
+}
+
+
+.slide-overlay {
+  position: absolute;
+  z-index: 2;
+  left: max(6%, calc((100vw - 1250px) / 2));
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(620px, 80%);
+  color: white;
+}
+
+.slide-overlay > span {
+  display: block;
+  margin-bottom: 18px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.slide-overlay h1,
+.slide-overlay h2 {
+  font-size: clamp(38px, 4.8vw, 70px);
+  line-height: .98;
+  letter-spacing: -2.5px;
+  font-weight: 300;
+  max-width: 680px;
+}
+
+.slide-overlay p {
+  margin-top: 22px;
+  max-width: 520px;
+  font-size: 15px;
+  line-height: 1.75;
+  opacity: .9;
+}
+
+.slide-overlay a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,255,255,.7);
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 50%;
+  color: white;
+  background: rgba(15,50,53,.18);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: background .25s ease;
+}
+
+.slider-arrow:hover {
+  background: rgba(15,50,53,.6);
+}
+
+.slider-prev {
+  left: 24px;
+}
+
+.slider-next {
+  right: 24px;
+}
+
+.slider-dots {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.slider-dot {
+  width: 7px;
+  height: 7px;
+  border: 1px solid white;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.slider-dot.active {
+  background: white;
+}
+
+
+/* ==================================================
+   ANNOUNCEMENT BAR — RÍO + LOOP REAL SOBRE LA CURVA
+================================================== */
+
+.announcement-bar {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  height: 150px;
+
+  background: linear-gradient(
+    to bottom,
+    #000000 0%,
+    #000000 50%,
+    var(--section-light-bg) 50%,
+    var(--section-light-bg) 100%
+  );
+}
+
+
+/* ==================================================
+   RÍO
+================================================== */
+
+.announcement-river-svg {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  z-index: 1;
+
+  overflow: visible;
+  pointer-events: none;
+}
+
+.announcement-river-shadow {
+  fill: none;
+
+  stroke: rgba(18,59,63,.09);
+  stroke-width: 90;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  filter: blur(7px);
+}
+
+.announcement-river-band {
+  fill: none;
+
+  stroke: url(#announcementRiverGradient);
+  stroke-width: 80;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* ==================================================
+   TEXTO QUE SIGUE EL PATH
+================================================== */
+
+.announcement-river-text-layer {
+  pointer-events: none;
+}
+
+.announcement-river-text {
+  fill: #ffffff;
+  white-space: pre;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+
+  letter-spacing: .35px;
+
+  dominant-baseline: middle;
+
+  paint-order: stroke;
+  stroke: rgba(14,50,53,.12);
+  stroke-width: .3px;
+
+  text-rendering: geometricPrecision;
+}
+
+.announcement-river-star {
+  fill: var(--lavanda);
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 900px) {
+
+  .announcement-bar {
+    height: 132px;
+  }
+
+  .announcement-river-band {
+    stroke-width: 76;
+  }
+
+  .announcement-river-shadow {
+    stroke-width: 88;
+  }
+
+  .announcement-river-text {
+    font-size: 18px;
+  }
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 700px) {
+
+  .announcement-bar {
+    height: 112px;
+  }
+
+  .announcement-river-band {
+    stroke-width: 70;
+  }
+
+  .announcement-river-shadow {
+    stroke-width: 82;
+    filter: blur(8px);
+  }
+
+  .announcement-river-text {
+    font-size: 18px;
+    letter-spacing: .2px;
+  }
+
+}
+
+/* /* ==================================================
+   SERVICIOS
+================================================== */
+
+/* =====================================================
+   AUCARIA — SERVICIOS + MARQUEE
+===================================================== */
+
+.aucaria-services {
+  --as-bg: #001b21;
+  --as-card: #111313;
+  --as-border: rgba(255,255,255,.11);
+  --as-text: #f4f2ed;
+  --as-muted: rgba(244,242,237,.58);
+  --as-accent: #123b3f;
+
+  position: relative;
+  background: var(--as-bg);
+  padding: 110px 0 70px;
+  overflow: hidden;
+}
+
+
+/* LUZ AMBIENTAL */
+
+.aucaria-services::before {
+  content: "";
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  left: 50%;
+  top: -380px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle,
+    rgba(18,59,63,.28) 0%,
+    rgba(18,59,63,.08) 38%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+
+/* sistema aucaria */
+
+/* =====================================================
+   AUCARIA — TABLITA CUTE
+===================================================== */
+
+.aucaria-cute-process {
+
+  --cute-green: #123b3f;
+  --cute-green-dark: #0b2c2f;
+  --cute-green-light: #e8f0ed;
+
+  --cute-red: #762e2b;
+  --cute-red-dark: #57201e;
+  --cute-red-light: #f8ece9;
+
+  --cute-black: #171817;
+  --cute-white: #fbfbf8;
+
+  position: relative;
+
+  padding: 100px 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(18,59,63,.08),
+      transparent 30%
+    ),
+    #f9f9f5;
+
+  overflow: hidden;
+}
+
+
+/* =====================================================
+   CONTENEDOR
+===================================================== */
+
+.cute-process-container {
+
+  width: min(980px, calc(100% - 40px));
+
+  margin: auto;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* =====================================================
+   DECORACIONES FLOTANTES
+===================================================== */
+
+.cute-float {
+
+  position: absolute;
+
+  color: rgba(18,59,63,.15);
+
+  pointer-events: none;
+
+  animation: cuteFloat 6s ease-in-out infinite;
+}
+
+
+.cute-float-1 {
+
+  left: 8%;
+  top: 13%;
+
+  font-size: 40px;
+}
+
+
+.cute-float-2 {
+
+  right: 8%;
+  top: 26%;
+
+  font-size: 26px;
+
+  animation-delay: -2s;
+}
+
+
+.cute-float-3 {
+
+  right: 12%;
+  bottom: 12%;
+
+  font-size: 50px;
+
+  animation-delay: -4s;
+}
+
+
+@keyframes cuteFloat {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      rotate(0);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-12px)
+      rotate(15deg);
+
+  }
+
+}
+
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+
+.cute-process-heading {
+
+  max-width: 700px;
+
+  margin-bottom: 45px;
+}
+
+
+.cute-eyebrow {
+
+  display: inline-flex;
+
+  padding: 9px 14px;
+
+  margin-bottom: 20px;
+
+  border-radius: 100px;
+
+  background: var(--cute-green-light);
+
+  color: var(--cute-green);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: .14em;
+}
+
+
+.cute-process-heading h2 {
+
+  margin: 0;
+
+  color: var(--cute-black);
+
+  font-size: clamp(40px, 5vw, 64px);
+
+  line-height: .98;
+
+  letter-spacing: -.05em;
+
+  font-weight: 700;
+}
+
+
+.cute-process-heading h2 span {
+
+  color: var(--cute-green);
+}
+
+
+.cute-process-heading p {
+
+  max-width: 610px;
+
+  margin: 22px 0 0;
+
+  color: #242424;
+
+  font-size: 17px;
+
+  line-height: 1.6;
+
+  font-weight: 500;
+}
+
+
+/* =====================================================
+   TABLA
+===================================================== */
+
+.cute-table {
+
+  position: relative;
+
+  overflow: hidden;
+
+  background: white;
+
+  border: 1px solid rgba(18,59,63,.12);
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 25px 70px rgba(18,59,63,.08);
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.cute-table-header {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1.12fr;
+}
+
+
+.cute-header-before,
+.cute-header-aucaria {
+
+  min-height: 105px;
+
+  padding: 23px 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+
+/* ANTES */
+
+.cute-header-before {
+
+  background: var(--cute-red-light);
+
+  border-right: 1px dashed rgba(18,59,63,.15);
+}
+
+
+.header-emoji {
+
+  font-size: 30px;
+
+  animation: badEmoji 3s ease-in-out infinite;
+}
+
+
+@keyframes badEmoji {
+
+  0%,
+  100% {
+
+    transform: rotate(-4deg);
+
+  }
+
+  50% {
+
+    transform: rotate(5deg);
+
+  }
+
+}
+
+
+.cute-header-before small {
+
+  color: var(--cute-red);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: .13em;
+}
+
+
+.cute-header-before h3 {
+
+  margin: 4px 0 0;
+
+  color: var(--cute-red-dark);
+
+  font-size: 27px;
+
+  font-weight: 700;
+
+  letter-spacing: -.04em;
+}
+
+
+/* AUCARIA HEADER */
+
+.cute-header-aucaria {
+
+  position: relative;
+
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(255,255,255,.16),
+      transparent 45%
+    ),
+    var(--cute-green);
+
+  color: white;
+}
+
+
+.cute-header-aucaria small {
+
+  color: rgba(255,255,255,.68);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: .13em;
+}
+
+
+.cute-header-aucaria h3 {
+
+  margin: 4px 0 0;
+
+  color: white;
+
+  font-size: 28px;
+
+  font-weight: 700;
+
+  letter-spacing: -.04em;
+}
+
+
+.header-flower {
+
+  width: 43px;
+  height: 43px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.13);
+
+  font-size: 21px;
+
+  animation: flowerSpin 8s linear infinite;
+}
+
+
+.aucaria-mini-star {
+
+  position: absolute;
+
+  right: 24px;
+  top: 20px;
+
+  color: rgba(255,255,255,.45);
+
+  font-size: 17px;
+
+  animation: starPulse 2s ease-in-out infinite;
+}
+
+
+@keyframes starPulse {
+
+  0%,
+  100% {
+
+    transform: scale(.8);
+
+    opacity: .4;
+
+  }
+
+  50% {
+
+    transform: scale(1.2);
+
+    opacity: 1;
+
+  }
+
+}
+
+
+/* =====================================================
+   FILAS
+===================================================== */
+
+.cute-row {
+
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1.12fr;
+
+  border-top: 1px dashed rgba(18,59,63,.14);
+}
+
+
+/* =====================================================
+   CELDAS
+===================================================== */
+
+.cute-before,
+.cute-aucaria {
+
+  position: relative;
+
+  min-height: 112px;
+
+  padding: 22px 27px;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 15px;
+}
+
+
+/* ANTES */
+
+.cute-before {
+
+  background: #fffafa;
+
+  border-right: 1px dashed rgba(18,59,63,.14);
+
+  transition:
+    background .3s ease,
+    transform .3s ease;
+}
+
+
+.cute-row:hover .cute-before {
+
+  background: var(--cute-red-light);
+}
+
+
+/* AUCARIA */
+
+.cute-aucaria {
+
+  padding-right: 55px;
+
+  background: #f7faf8;
+
+  transition:
+    background .3s ease,
+    box-shadow .3s ease,
+    transform .3s ease;
+}
+
+
+.cute-row:hover .cute-aucaria {
+
+  background: #edf5f1;
+
+  box-shadow:
+    inset 4px 0 0 var(--cute-green);
+}
+
+
+/* =====================================================
+   EMOJIS MALOS
+===================================================== */
+
+.bad-emoji {
+
+  width: 39px;
+  height: 39px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: var(--cute-red-light);
+
+  font-size: 21px;
+
+  transition: transform .35s ease;
+}
+
+
+.cute-row:hover .bad-emoji {
+
+  transform:
+    rotate(-8deg)
+    scale(1.12);
+}
+
+
+/* =====================================================
+   ICONOS NUMÉRICOS AUCARIA
+===================================================== */
+
+.good-icon {
+
+  width: 39px;
+  height: 39px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: var(--cute-green-light);
+
+  color: var(--cute-green);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  transition:
+    background .3s ease,
+    color .3s ease,
+    transform .35s ease;
+}
+
+
+.cute-row:hover .good-icon {
+
+  background: var(--cute-green);
+
+  color: white;
+
+  transform:
+    rotate(6deg)
+    scale(1.1);
+}
+
+
+/* =====================================================
+   TEXTO
+===================================================== */
+
+.cute-mini-label {
+
+  display: block;
+
+  margin-bottom: 4px;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: .13em;
+}
+
+
+.cute-before .cute-mini-label {
+
+  color: var(--cute-red);
+}
+
+
+.cute-aucaria .cute-mini-label {
+
+  color: var(--cute-green);
+}
+
+
+.cute-before h4,
+.cute-aucaria h4 {
+
+  margin: 0 0 5px;
+
+  font-size: 17px;
+
+  line-height: 1.2;
+
+  font-weight: 700;
+
+  letter-spacing: -.025em;
+}
+
+
+.cute-before h4 {
+
+  color: var(--cute-red-dark);
+}
+
+
+.cute-aucaria h4 {
+
+  color: var(--cute-green);
+}
+
+
+.cute-before p,
+.cute-aucaria p {
+
+  margin: 0;
+
+  max-width: 330px;
+
+  color: #242424;
+
+  font-size: 13px;
+
+  line-height: 1.45;
+
+  font-weight: 500;
+}
+
+
+/* =====================================================
+   CHECK
+===================================================== */
+
+.cute-check {
+
+  position: absolute;
+
+  right: 21px;
+  top: 22px;
+
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--cute-green-light);
+
+  color: var(--cute-green);
+
+  font-size: 12px;
+
+  font-weight: 900;
+
+  transition:
+    background .3s ease,
+    color .3s ease,
+    transform .3s ease;
+}
+
+
+.cute-row:hover .cute-check {
+
+  background: var(--cute-green);
+
+  color: #fff;
+
+  transform:
+    rotate(12deg)
+    scale(1.1);
+}
+
+
+/* =====================================================
+   FLOR CENTRAL ENTRE COLUMNAS
+===================================================== */
+
+.row-flower {
+
+  position: absolute;
+
+  z-index: 5;
+
+  left: 47.17%;
+  top: 50%;
+
+  width: 25px;
+  height: 25px;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: white;
+
+  border: 1px solid rgba(18,59,63,.15);
+
+  color: var(--cute-green);
+
+  font-size: 12px;
+
+  transition:
+    transform .4s ease,
+    background .3s ease,
+    color .3s ease;
+}
+
+
+.cute-row:hover .row-flower {
+
+  transform:
+    translate(-50%, -50%)
+    rotate(180deg)
+    scale(1.15);
+
+  background: var(--cute-green);
+
+  color: white;
+}
+
+
+/* =====================================================
+   BADGE
+===================================================== */
+
+.cute-badge {
+
+  display: inline-flex;
+
+  margin-top: 8px;
+
+  padding: 5px 8px;
+
+  border-radius: 100px;
+
+  background: var(--cute-green-light);
+
+  color: var(--cute-green);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: .08em;
+}
+
+
+/* =====================================================
+   FILA FINAL
+===================================================== */
+
+.cute-before-final {
+
+  background: var(--cute-red-light);
+}
+
+
+.cute-aucaria-final {
+
+  background:
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(255,255,255,.12),
+      transparent 40%
+    ),
+    var(--cute-green);
+
+  color: white;
+}
+
+
+.cute-aucaria-final .cute-mini-label {
+
+  color: rgba(255,255,255,.65);
+}
+
+
+.cute-aucaria-final h4 {
+
+  color: white;
+
+  font-size: 20px;
+}
+
+
+.cute-aucaria-final p {
+
+  color: white;
+}
+
+
+.final-big-icon {
+
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,.14);
+
+  color: white;
+
+  font-size: 17px;
+}
+
+
+.final-row-flower {
+
+  animation: flowerSpin 6s linear infinite;
+}
+
+
+@keyframes flowerSpin {
+
+  from {
+
+    rotate: 0deg;
+
+  }
+
+  to {
+
+    rotate: 360deg;
+
+  }
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.cute-process-footer {
+
+  margin-top: 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 25px;
+}
+
+
+.cute-footer-copy {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+.cute-footer-copy > span {
+
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--cute-green-light);
+
+  font-size: 18px;
+}
+
+
+.cute-footer-copy p {
+
+  margin: 0;
+
+  color: #1b1b1b;
+
+  font-size: 14px;
+
+  font-weight: 500;
+}
+
+
+.cute-footer-copy strong {
+
+  color: var(--cute-green);
+
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   BOTÓN
+===================================================== */
+
+.cute-process-button {
+
+  flex-shrink: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 14px 19px;
+
+  border-radius: 10px;
+
+  background: var(--cute-green);
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  transition:
+    transform .3s ease,
+    background .3s ease,
+    box-shadow .3s ease;
+}
+
+
+.cute-process-button:hover {
+
+  transform: translateY(-3px);
+
+  background: var(--cute-green-dark);
+
+  box-shadow:
+    0 12px 28px rgba(18,59,63,.18);
+}
+
+
+.cute-process-button span {
+
+  font-size: 18px;
+
+  transition: transform .3s ease;
+}
+
+
+.cute-process-button:hover span {
+
+  transform: translateX(5px);
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+  .aucaria-cute-process {
+
+    padding: 75px 0;
+
+  }
+
+
+  .cute-process-container {
+
+    width: calc(100% - 26px);
+
+  }
+
+
+  .cute-process-heading h2 {
+
+    font-size: 42px;
+
+  }
+
+
+  .cute-process-heading p {
+
+    font-size: 16px;
+
+  }
+
+
+  /*
+     EN CELULAR:
+     ANTES ARRIBA
+     AUCARIA ABAJO
+  */
+
+  .cute-table-header {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .cute-header-before {
+
+    min-height: auto;
+
+    padding: 18px 22px;
+
+    border-right: 0;
+
+    border-bottom:
+      1px dashed rgba(18,59,63,.15);
+  }
+
+
+  .cute-header-aucaria {
+
+    min-height: auto;
+
+    padding: 22px;
+  }
+
+
+  .cute-row {
+
+    grid-template-columns: 1fr;
+
+    border-top: 6px solid var(--cute-green-light);
+  }
+
+
+  .cute-before,
+  .cute-aucaria {
+
+    min-height: auto;
+
+    padding: 21px;
+
+  }
+
+
+  .cute-before {
+
+    border-right: 0;
+
+    border-bottom:
+      1px dashed rgba(18,59,63,.15);
+  }
+
+
+  .cute-aucaria {
+
+    padding-right: 52px;
+  }
+
+
+  .row-flower {
+
+    left: 50%;
+    top: 50%;
+
+    display: none;
+  }
+
+
+  .cute-before h4,
+  .cute-aucaria h4 {
+
+    font-size: 17px;
+
+  }
+
+
+  .cute-before p,
+  .cute-aucaria p {
+
+    font-size: 13px;
+
+  }
+
+
+  .cute-process-footer {
+
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+
+  .cute-process-button {
+
+    justify-content: center;
+  }
+
+}
+
+
+/* =====================================================
+   REDUCIR MOVIMIENTO
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cute-float,
+  .header-flower,
+  .header-emoji,
+  .aucaria-mini-star,
+  .final-row-flower {
+
+    animation: none !important;
+
+  }
+
+}
+
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+
+.aucaria-services-header {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto 55px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.aucaria-eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: rgba(255,255,255,.5);
+  font-size: 11px;
+  letter-spacing: .22em;
+  font-weight: 600;
+}
+
+.aucaria-services-header h2 {
+  margin: 0;
+  color: var(--as-text);
+  font-size: clamp(38px, 5vw, 70px);
+  line-height: .98;
+  letter-spacing: -.045em;
+  font-weight: 600;
+}
+
+.aucaria-services-header p {
+  width: min(600px, 100%);
+  margin: 25px auto 0;
+  color: var(--as-muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+
+/* =====================================================
+   TARJETAS
+===================================================== */
+
+.aucaria-main-services {
+  width: min(1420px, calc(100% - 60px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.aucaria-service-card {
+  position: relative;
+  min-height: 310px;
+  padding: 30px 26px 27px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.025),
+      transparent 45%
+    ),
+    var(--as-card);
+
+  border: 1px solid var(--as-border);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+
+  transition:
+    border-color .35s ease,
+    background .35s ease,
+    box-shadow .35s ease,
+    transform .35s ease;
+
+  animation: aucariaFloat 6s ease-in-out infinite;
+}
+
+
+/* CADA TARJETA SE MUEVE LEVEMENTE DISTINTO */
+
+.card-2 {
+  animation-delay: -1.2s;
+}
+
+.card-3 {
+  animation-delay: -2.4s;
+}
+
+.card-4 {
+  animation-delay: -3.6s;
+}
+
+.card-5 {
+  animation-delay: -4.8s;
+}
+
+
+/* HOVER */
+
+.aucaria-service-card:hover {
+  border-color: rgba(255,255,255,.22);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18,59,63,.22),
+      transparent 52%
+    ),
+    #121414;
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.04);
+
+  transform: translateY(-8px);
+}
+
+
+/* ICONO */
+
+.service-icon {
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  
+}
+
+.service-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: #d8e4e2;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* TEXTO */
+
+.aucaria-service-card h3 {
+  margin: 0 0 13px;
+  color: var(--as-text);
+  font-size: 20px;
+  line-height: 1.15;
+  letter-spacing: -.035em;
+}
+
+.aucaria-service-card p {
+  margin: 0;
+  color: var(--as-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.service-link {
+  margin-top: auto;
+  padding-top: 25px;
+  color: rgba(255,255,255,.44);
+  font-size: 13px;
+  transition: color .25s ease;
+}
+
+.aucaria-service-card:hover .service-link {
+  color: #fff;
+}
+
+
+/* MOVIMIENTO SUAVE */
+
+@keyframes aucariaFloat {
+
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -7px;
+  }
+}
+
+
+/* =====================================================
+   MARQUEES
+===================================================== */
+
+.aucaria-marquees {
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.aucaria-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  /* EFECTO DE DESVANECER LOS LATERALES */
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      black 7%,
+      black 93%,
+      transparent
+    );
+
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent,
+      black 7%,
+      black 93%,
+      transparent
+    );
+}
+
+
+/* CONTENEDOR QUE SE MUEVE */
+
+.marquee-track {
+  width: max-content;
+  display: flex;
+}
+
+
+/* CADA GRUPO */
+
+.marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  gap: 13px;
+  padding-right: 13px;
+}
+
+
+/* MICROSERVICIOS */
+
+.marquee-group span {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+
+  height: 48px;
+  padding: 0 21px;
+
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 10px;
+
+  background: rgba(255,255,255,.025);
+
+  color: rgba(255,255,255,.56);
+  font-size: 14px;
+  white-space: nowrap;
+
+  transition:
+    color .25s ease,
+    border-color .25s ease,
+    background .25s ease;
+}
+
+.marquee-group span:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,.24);
+  background: rgba(18,59,63,.25);
+}
+
+
+/* FILA QUE VA HACIA LA IZQUIERDA */
+
+.marquee-left .marquee-track {
+  animation: marqueeLeft 55s linear infinite;
+}
+
+
+/* FILA QUE VA HACIA LA DERECHA */
+
+.marquee-right .marquee-track {
+  animation: marqueeRight 65s linear infinite;
+}
+
+
+/* PAUSA AL PASAR EL MOUSE */
+
+.aucaria-marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+
+/* ANIMACIONES */
+
+@keyframes marqueeLeft {
+
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+
+}
+
+
+@keyframes marqueeRight {
+
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+
+}
+
+
+/* =====================================================
+   AUCARIA — KITS
+===================================================== */
+
+.aucaria-kits {
+
+  --kits-green: #123b3f;
+  --kits-green-dark: #0b2c2f;
+  --kits-green-soft: #e8f0ed;
+
+  --kits-cream: #fafaf6;
+  --kits-white: #ffffff;
+
+  --kits-black: #151616;
+  --kits-text: #242625;
+
+  position: relative;
+
+  padding: 110px 0;
+
+  background: var(--section-light-bg);
+
+  overflow: hidden;
+}
+
+
+/* =====================================================
+   HALOS LUMINOSOS
+===================================================== */
+
+.kits-glow {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(15px);
+
+  pointer-events: none;
+}
+
+
+.kits-glow-1 {
+
+  width: 650px;
+  height: 650px;
+
+  top: -300px;
+  right: -220px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(18,59,63,.075),
+      rgba(18,59,63,.025) 45%,
+      transparent 70%
+    );
+}
+
+
+.kits-glow-2 {
+
+  width: 500px;
+  height: 500px;
+
+  bottom: -330px;
+  left: -180px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(18,59,63,.10),
+      transparent 70%
+    );
+}
+
+
+/* =====================================================
+   DECORACIONES FLOTANTES
+===================================================== */
+
+.kits-floating {
+
+  position: absolute;
+
+  z-index: 1;
+
+  color: rgba(18,59,63,.13);
+
+  pointer-events: none;
+
+  animation:
+    kitsFloat 6s ease-in-out infinite;
+}
+
+
+.kits-floating-1 {
+
+  top: 12%;
+  left: 5%;
+
+  font-size: 44px;
+}
+
+
+.kits-floating-2 {
+
+  top: 28%;
+  right: 7%;
+
+  font-size: 26px;
+
+  animation-delay: -2s;
+}
+
+
+.kits-floating-3 {
+
+  bottom: 12%;
+  right: 4%;
+
+  font-size: 54px;
+
+  animation-delay: -4s;
+}
+
+
+@keyframes kitsFloat {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      rotate(0deg);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-13px)
+      rotate(15deg);
+
+  }
+
+}
+
+
+/* =====================================================
+   JARDÍN FLOTANTE — KITS
+===================================================== */
+
+.kits-nature-float {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  filter: saturate(.82);
+}
+
+/* FLORES */
+.kits-flower-1 {
+  left: 2.5%;
+  top: 20%;
+  color: rgba(18,59,63,.22);
+  font-size: 48px;
+  animation: kitsFlowerSpin 13s linear infinite;
+}
+
+.kits-flower-2 {
+  right: 3.5%;
+  top: 17%;
+  color: rgba(216,168,160,.68);
+  font-size: 34px;
+  animation: kitsFlowerSpin 10s linear infinite reverse;
+}
+
+.kits-flower-3 {
+  left: 7%;
+  bottom: 10%;
+  color: rgba(18,59,63,.15);
+  font-size: 58px;
+  animation: kitsFlowerSpin 16s linear infinite;
+}
+
+/* PINOS */
+.kits-pine-1 {
+  left: 1.5%;
+  bottom: 28%;
+  font-size: 38px;
+  opacity: .72;
+  animation: kitsPineSway 6.5s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+
+.kits-pine-2 {
+  right: 2%;
+  bottom: 22%;
+  font-size: 50px;
+  opacity: .58;
+  animation: kitsPineSway 7.5s ease-in-out infinite reverse;
+  transform-origin: 50% 100%;
+}
+
+/* MARIPOSAS */
+.kits-butterfly-1 {
+  left: 12%;
+  top: 7%;
+  font-size: 27px;
+  animation: kitsButterflyFly 8s ease-in-out infinite;
+}
+
+.kits-butterfly-2 {
+  right: 11%;
+  top: 42%;
+  font-size: 22px;
+  animation: kitsButterflyFlyAlt 9.5s ease-in-out infinite;
+}
+
+/* VAQUITAS DE SAN ANTONIO */
+.kits-ladybug-1 {
+  left: 17%;
+  bottom: 7%;
+  font-size: 19px;
+  animation: kitsLadybugMove 10s ease-in-out infinite;
+}
+
+.kits-ladybug-2 {
+  right: 16%;
+  top: 12%;
+  font-size: 17px;
+  animation: kitsLadybugMove 12s ease-in-out infinite reverse;
+}
+
+@keyframes kitsButterflyFly {
+  0%, 100% { transform: translate(0, 0) rotate(-8deg); }
+  25% { transform: translate(18px, -14px) rotate(8deg); }
+  50% { transform: translate(34px, 5px) rotate(-5deg); }
+  75% { transform: translate(12px, 18px) rotate(7deg); }
+}
+
+@keyframes kitsButterflyFlyAlt {
+  0%, 100% { transform: translate(0, 0) rotate(8deg); }
+  38% { transform: translate(-27px, -18px) rotate(-10deg); }
+  72% { transform: translate(-11px, 15px) rotate(5deg); }
+}
+
+@keyframes kitsFlowerSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes kitsPineSway {
+  0%, 100% { transform: rotate(-2deg) translateY(0); }
+  50% { transform: rotate(3deg) translateY(-7px); }
+}
+
+@keyframes kitsLadybugMove {
+  0%, 100% { transform: translate(0, 0) rotate(-5deg); }
+  35% { transform: translate(23px, -8px) rotate(8deg); }
+  70% { transform: translate(39px, 7px) rotate(12deg); }
+}
+
+
+/* =====================================================
+   RÍO ONDULADO AUCARIA — POR DELANTE DE LOS KITS
+===================================================== */
+
+.kits-river {
+  position: absolute;
+  z-index: 4;
+  left: -10%;
+  top: 235px;
+  width: 120%;
+  height: 610px;
+  pointer-events: none;
+  user-select: none;
+  opacity: .72;
+  transform: rotate(-1.2deg);
+  transform-origin: center;
+}
+
+.kits-river-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.kits-river-shadow {
+  fill: none;
+  stroke: rgba(18,59,63,.038);
+  stroke-width: 150;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: blur(18px);
+}
+
+.kits-river-band {
+  fill: none;
+  stroke: url(#kitsRiverGradient);
+  stroke-width: 116;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.kits-river-shine {
+  fill: none;
+  stroke: rgba(255,255,255,.42);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 14 22;
+  opacity: .82;
+}
+
+.kits-river-text {
+  fill: rgba(18,59,63,.34);
+  font-family: "DM Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Una segunda corriente visual muy tenue para dar profundidad */
+.kits-river::after {
+  content: "";
+  position: absolute;
+  width: 34%;
+  height: 120px;
+  right: 7%;
+  bottom: 7%;
+  border-radius: 999px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(165,121,157,.10),
+    rgba(18,59,63,.045) 52%,
+    transparent 72%
+  );
+  filter: blur(18px);
+  transform: rotate(-13deg);
+}
+
+/* Las tarjetas siempre quedan por encima del río */
+.kits-slider-top,
+.kits-slider,
+.kits-footer {
+  position: relative;
+  z-index: 3;
+}
+
+/* =====================================================
+   CONTENEDOR
+===================================================== */
+
+.kits-container {
+
+  width: min(1250px, calc(100% - 60px));
+
+  margin: 0 auto;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+
+.kits-heading {
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 50px;
+
+  margin-bottom: 50px;
+}
+
+
+.kits-heading-copy {
+
+  max-width: 760px;
+}
+
+
+.kits-eyebrow {
+
+  display: inline-flex;
+
+  padding: 9px 14px;
+
+  margin-bottom: 22px;
+
+  border-radius: 100px;
+
+  background: var(--kits-green-soft);
+
+  color: var(--kits-green);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: .15em;
+}
+
+
+.kits-heading h2 {
+
+  margin: 0;
+
+  color: var(--kits-black);
+
+  font-size:
+    clamp(43px, 5.2vw, 70px);
+
+  line-height: .96;
+
+  letter-spacing: -.055em;
+
+  font-weight: 700;
+}
+
+
+.kits-heading h2 span {
+
+  color: var(--kits-green);
+}
+
+
+.kits-heading p {
+
+  max-width: 680px;
+
+  margin: 25px 0 0;
+
+  color: var(--kits-text);
+
+  font-size: 18px;
+
+  line-height: 1.6;
+
+  font-weight: 500;
+}
+
+
+.kits-heading p strong {
+
+  color: var(--kits-green);
+
+  font-weight: 800;
+}
+
+
+/* MENSAJITO LATERAL */
+
+.kits-side-message {
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 17px 21px;
+
+  border: 1px solid
+    rgba(18,59,63,.12);
+
+  border-radius: 17px;
+
+  background:
+    rgba(255,255,255,.75);
+
+  box-shadow:
+    0 14px 35px
+    rgba(18,59,63,.06);
+
+  transform: rotate(2deg);
+}
+
+
+.kits-side-icon {
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--kits-green-soft);
+
+  color: var(--kits-green);
+
+  font-size: 18px;
+
+  animation:
+    kitFlowerRotate 7s linear infinite;
+}
+
+
+.kits-side-message p {
+
+  margin: 0;
+
+  color: var(--kits-green);
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   EXPLICACIÓN
+===================================================== */
+
+.kits-explanation {
+
+  max-width: 800px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 16px;
+
+  margin-bottom: 65px;
+
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  border:
+    1px solid rgba(18,59,63,.10);
+
+  box-shadow:
+    0 15px 45px
+    rgba(18,59,63,.05);
+}
+
+
+.kits-explanation-item {
+
+  flex: 1;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 12px 15px;
+
+  border-radius: 13px;
+}
+
+
+.featured-explanation {
+
+  background:
+    var(--kits-green-soft);
+}
+
+
+.explanation-number {
+
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #f1f2ee;
+
+  color: #555;
+
+  font-size: 10px;
+
+  font-weight: 800;
+}
+
+
+.featured-explanation
+.explanation-number {
+
+  background:
+    var(--kits-green);
+
+  color: white;
+}
+
+
+.kits-explanation-item strong {
+
+  display: block;
+
+  color: var(--kits-black);
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+
+.featured-explanation strong {
+
+  color: var(--kits-green);
+}
+
+
+.kits-explanation-item p {
+
+  margin: 3px 0 0;
+
+  color: #363837;
+
+  font-size: 12px;
+
+  font-weight: 500;
+}
+
+
+.kits-explanation-plus {
+
+  color:
+    rgba(18,59,63,.35);
+
+  font-size: 22px;
+}
+
+
+/* =====================================================
+   SLIDER TOP
+===================================================== */
+
+.kits-slider-top {
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 25px;
+}
+
+
+.kits-small-title {
+
+  color: var(--kits-green);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: .15em;
+}
+
+
+.kits-slider-top h3 {
+
+  margin: 6px 0 0;
+
+  color: var(--kits-black);
+
+  font-size:
+    clamp(25px,3vw,36px);
+
+  letter-spacing: -.04em;
+
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   FLECHAS
+===================================================== */
+
+.kits-controls {
+
+  display: flex;
+
+  gap: 8px;
+}
+
+
+.kits-arrow {
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  border:
+    1px solid rgba(18,59,63,.15);
+
+  background: white;
+
+  color: var(--kits-green);
+
+  font-size: 19px;
+
+  cursor: pointer;
+
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    color .25s ease,
+    box-shadow .25s ease;
+}
+
+
+.kits-arrow:hover {
+
+  transform: translateY(-3px);
+
+  background:
+    var(--kits-green);
+
+  color: white;
+
+  box-shadow:
+    0 10px 24px
+    rgba(18,59,63,.15);
+}
+
+
+/* =====================================================
+   SLIDER
+===================================================== */
+
+.kits-slider {
+
+  overflow: hidden;
+
+  padding: 10px 5px 35px;
+}
+
+
+.kits-track {
+
+  display: flex;
+
+  gap: 22px;
+
+  transition:
+    transform .55s
+    cubic-bezier(.22,.8,.25,1);
+}
+
+
+/* =====================================================
+   TARJETA KIT
+===================================================== */
+
+.kit-card {
+
+  position: relative;
+
+  flex:
+    0 0
+    calc((100% - 44px) / 3);
+
+  min-height: 530px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 30px;
+
+  border-radius: 24px;
+
+  border:
+    1px solid rgba(18,59,63,.11);
+
+  background:
+    linear-gradient(
+      160deg,
+      #ffffff,
+      #fafcf9
+    );
+
+  box-shadow:
+    0 20px 50px
+    rgba(18,59,63,.07);
+
+  overflow: hidden;
+
+  transition:
+    transform .4s ease,
+    box-shadow .4s ease,
+    border-color .4s ease;
+}
+
+
+.kit-card:hover {
+
+  transform:
+    translateY(-9px);
+
+  border-color:
+    rgba(18,59,63,.23);
+
+  box-shadow:
+    0 30px 70px
+    rgba(18,59,63,.13);
+}
+
+
+/* FLOR DECORATIVA */
+
+.kit-card-decoration {
+
+  position: absolute;
+
+  right: -12px;
+  top: 75px;
+
+  color:
+    rgba(18,59,63,.07);
+
+  font-size: 100px;
+
+  pointer-events: none;
+
+  transition:
+    transform .7s ease;
+}
+
+
+.kit-card:hover
+.kit-card-decoration {
+
+  transform:
+    rotate(35deg)
+    scale(1.08);
+}
+
+
+/* =====================================================
+   TARJETA DESTACADA
+===================================================== */
+
+.kit-card-featured {
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(255,255,255,.12),
+      transparent 35%
+    ),
+    var(--kits-green);
+
+  border-color:
+    var(--kits-green);
+
+  color: white;
+}
+
+
+.kit-card-featured:hover {
+
+  border-color:
+    var(--kits-green-dark);
+
+  box-shadow:
+    0 30px 75px
+    rgba(18,59,63,.23);
+}
+
+
+.kit-card-featured
+.kit-card-decoration {
+
+  color:
+    rgba(255,255,255,.08);
+}
+
+
+/* POPULAR */
+
+.kit-popular {
+
+  position: absolute;
+
+  right: 20px;
+  top: 20px;
+
+  padding: 7px 10px;
+
+  border-radius: 100px;
+
+  background:
+    rgba(255,255,255,.13);
+
+  color: white;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: .10em;
+}
+
+
+/* =====================================================
+   CABECERA TARJETA
+===================================================== */
+
+.kit-card-top {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+
+.kit-category {
+
+  color: var(--kits-green);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: .14em;
+}
+
+
+.kit-number {
+
+  color:
+    rgba(18,59,63,.45);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: .10em;
+}
+
+
+.kit-card-featured
+.kit-category,
+.kit-card-featured
+.kit-number {
+
+  color:
+    rgba(255,255,255,.65);
+}
+
+
+/* =====================================================
+   ICONO PRINCIPAL
+===================================================== */
+
+.kit-main-icon {
+
+  width: 120px;
+  height: 120px;
+
+  margin: 25px 0 25px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+ 
+
+  transition:
+    transform .4s ease,
+    background .3s ease;
+}
+
+
+.kit-main-icon svg {
+
+  width: 27px;
+  height: 27px;
+
+  fill: none;
+
+  stroke:
+    var(--kits-green);
+
+  stroke-width: 1.6;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.kit-card:hover
+.kit-main-icon {
+
+  transform:
+    rotate(-6deg)
+    scale(1.08);
+}
+
+
+
+
+.kit-card-featured
+.kit-main-icon svg {
+
+  stroke: white;
+}
+
+
+/* =====================================================
+   TEXTOS
+===================================================== */
+
+.kit-card h3 {
+
+  margin: 0 0 12px;
+
+  color: var(--kits-green);
+
+  font-size: 31px;
+
+  font-weight: 700;
+
+  letter-spacing: -.045em;
+}
+
+
+.kit-description {
+
+  margin: 0;
+
+  color: #252725;
+
+  font-size: 14px;
+
+  line-height: 1.55;
+
+  font-weight: 500;
+}
+
+
+.kit-card-featured h3 {
+
+  color: white;
+}
+
+
+.kit-card-featured
+.kit-description {
+
+  color:
+    rgba(255,255,255,.85);
+}
+
+
+/* =====================================================
+   DIVISOR
+===================================================== */
+
+.kit-divider {
+
+  height: 1px;
+
+  margin: 27px 0 22px;
+
+  background:
+    rgba(18,59,63,.12);
+}
+
+
+.kit-card-featured
+.kit-divider {
+
+  background:
+    rgba(255,255,255,.15);
+}
+
+
+/* =====================================================
+   INCLUYE
+===================================================== */
+
+.kit-includes-title {
+
+  color:
+    var(--kits-green);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: .14em;
+}
+
+
+.kit-card-featured
+.kit-includes-title {
+
+  color:
+    rgba(255,255,255,.6);
+}
+
+
+.kit-list {
+
+  list-style: none;
+
+  margin: 17px 0 30px;
+
+  padding: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 13px;
+}
+
+
+.kit-list li {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: #1c1e1d;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+.kit-list li > span {
+
+  width: 22px;
+  height: 22px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    var(--kits-green-soft);
+
+  color:
+    var(--kits-green);
+
+  font-size: 10px;
+
+  font-weight: 900;
+}
+
+
+.kit-card-featured
+.kit-list li {
+
+  color: white;
+}
+
+
+.kit-card-featured
+.kit-list li > span {
+
+  background:
+    rgba(255,255,255,.14);
+
+  color: white;
+}
+
+
+/* =====================================================
+   ABAJO DE LA TARJETA
+===================================================== */
+
+.kit-card-bottom {
+
+  margin-top: auto;
+
+  padding-top: 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+
+.kit-detail {
+
+  color:
+    rgba(18,59,63,.65);
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+
+.kit-card-featured
+.kit-detail {
+
+  color:
+    rgba(255,255,255,.65);
+}
+
+
+/* BOTÓN */
+
+.kit-button {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 11px 14px;
+
+  border-radius: 9px;
+
+  background:
+    var(--kits-green);
+
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  transition:
+    transform .3s ease,
+    background .3s ease;
+}
+
+
+.kit-button:hover {
+
+  transform: translateY(-2px);
+
+  background:
+    var(--kits-green-dark);
+}
+
+
+.kit-button span {
+
+  transition:
+    transform .3s ease;
+}
+
+
+.kit-button:hover span {
+
+  transform:
+    translateX(4px);
+}
+
+
+.kit-card-featured
+.kit-button {
+
+  background: white;
+
+  color:
+    var(--kits-green);
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.kits-footer {
+
+  margin-top: 15px;
+
+  padding: 25px 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  border-radius: 18px;
+
+  background:
+    var(--kits-green-soft);
+
+  border:
+    1px solid rgba(18,59,63,.10);
+}
+
+
+.kits-footer-flower {
+
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: white;
+
+  color:
+    var(--kits-green);
+
+  font-size: 18px;
+
+  animation:
+    kitFlowerRotate
+    8s linear infinite;
+}
+
+
+@keyframes kitFlowerRotate {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+.kits-footer div {
+
+  flex: 1;
+}
+
+
+.kits-footer div > span {
+
+  color:
+    var(--kits-green);
+
+  font-size: 14px;
+
+  font-weight: 800;
+}
+
+
+.kits-footer p {
+
+  margin: 3px 0 0;
+
+  color: #252725;
+
+  font-size: 13px;
+
+  font-weight: 500;
+}
+
+
+.kits-footer > a {
+
+  flex-shrink: 0;
+
+  color:
+    var(--kits-green);
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  text-decoration: none;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+
+  .kits-heading {
+
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .kits-side-message {
+
+    transform: none;
+  }
+
+
+  .kit-card {
+
+    flex:
+      0 0 calc((100% - 22px) / 2);
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+  .aucaria-kits {
+
+    padding: 80px 0;
+  }
+
+  .kits-river {
+    left: -34%;
+    top: 250px;
+    width: 168%;
+    height: 520px;
+    opacity: .64;
+    transform: rotate(-3deg);
+  }
+
+  .kits-river-band {
+    stroke-width: 92;
+  }
+
+  .kits-river-shadow {
+    stroke-width: 122;
+    filter: blur(14px);
+  }
+
+  .kits-river-text {
+    font-size: 15px;
+    letter-spacing: 2.2px;
+  }
+
+
+  .kits-container {
+
+    width:
+      calc(100% - 26px);
+  }
+
+
+  .kits-heading h2 {
+
+    font-size: 42px;
+  }
+
+
+  .kits-heading p {
+
+    font-size: 16px;
+  }
+
+
+  .kits-explanation {
+
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+
+  .kits-explanation-plus {
+
+    text-align: center;
+  }
+
+
+  .kits-slider-top {
+
+    align-items: center;
+  }
+
+
+  .kits-slider-top h3 {
+
+    font-size: 25px;
+  }
+
+
+  .kit-card {
+
+    flex: 0 0 88%;
+
+    min-height: 520px;
+  }
+
+
+  .kit-card {
+
+    padding: 25px;
+  }
+
+
+  .kits-footer {
+
+    align-items: flex-start;
+
+    flex-wrap: wrap;
+  }
+
+
+  .kits-footer > a {
+
+    width: 100%;
+
+    padding-left: 56px;
+  }
+
+  /* Jardín más liviano en celular */
+  .kits-flower-3,
+  .kits-pine-1,
+  .kits-butterfly-2,
+  .kits-ladybug-2 {
+    display: none;
+  }
+
+  .kits-flower-1 {
+    left: -8px;
+    top: 18%;
+    font-size: 34px;
+  }
+
+  .kits-flower-2 {
+    right: -4px;
+    top: 8%;
+    font-size: 26px;
+  }
+
+  .kits-pine-2 {
+    right: -9px;
+    bottom: 18%;
+    font-size: 37px;
+    opacity: .45;
+  }
+
+  .kits-butterfly-1 {
+    left: 5%;
+    top: 4%;
+    font-size: 22px;
+  }
+
+  .kits-ladybug-1 {
+    left: 8%;
+    bottom: 5%;
+    font-size: 16px;
+  }
+
+}
+
+/* =====================================================
+   BIBLIOTECA AUCARIA
+===================================================== */
+
+.biblioteca-aucaria {
+
+  --biblioteca-verde: #123b3f;
+  --biblioteca-crema: #f2eee4;
+  --biblioteca-blanco: #ffffff;
+
+  position: relative;
+
+  width: 100%;
+
+  min-height: 850px;
+
+  padding: 80px 0 55px;
+
+  /*
+  ==============================================
+  👇 CAMBIÁ SOLAMENTE ESTA RUTA
+  ==============================================
+  */
+
+  background-image:
+    url("img/fondo-biblioteca-aucaria.png");
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  overflow: hidden;
+}
+
+
+/* =====================================================
+   CAPA PARA OSCURECER UN POQUITO EL FONDO
+===================================================== */
+
+.biblioteca-overlay {
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 32, 35, .22) 0%,
+      rgba(2, 31, 34, .38) 50%,
+      rgba(1, 25, 28, .65) 100%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   CONTENEDOR
+===================================================== */
+
+.biblioteca-container {
+
+  position: relative;
+
+  z-index: 2;
+
+  width: min(1450px, calc(100% - 70px));
+
+  margin: 0 auto;
+}
+
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+
+.biblioteca-header {
+
+  text-align: center;
+
+  margin-bottom: 35px;
+}
+
+
+.biblioteca-symbol {
+
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: var(--biblioteca-crema);
+
+  font-size: 28px;
+
+  animation:
+    bibliotecaSymbol 6s linear infinite;
+}
+
+
+@keyframes bibliotecaSymbol {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+.biblioteca-header h2 {
+
+  margin: 0;
+
+  color: var(--biblioteca-crema);
+
+  font-size:
+    clamp(28px, 3.5vw, 48px);
+
+  font-weight: 500;
+
+  letter-spacing: .27em;
+
+  line-height: 1.1;
+}
+
+
+.biblioteca-header p {
+
+  margin: 17px 0 0;
+
+  color: rgba(255,255,255,.86);
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  letter-spacing: .12em;
+
+  text-transform: uppercase;
+}
+
+
+/* =====================================================
+   LIBROS
+===================================================== */
+
+.biblioteca-books {
+
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  align-items: end;
+
+  gap: 30px;
+
+  margin-top: 35px;
+}
+
+
+/* =====================================================
+   CADA EBOOK
+===================================================== */
+
+.ebook-item {
+
+  position: relative;
+
+  text-align: center;
+
+  transition:
+    transform .45s ease;
+}
+
+
+.ebook-image-link {
+
+  display: block;
+
+  position: relative;
+
+  text-decoration: none;
+
+  transition:
+    transform .45s ease;
+}
+
+
+/* IMAGEN DEL LIBRO */
+
+.ebook-image {
+
+  display: block;
+
+  width: 100%;
+
+  max-height: 610px;
+
+  object-fit: contain;
+
+  margin: 0 auto;
+
+  filter:
+    drop-shadow(
+      0 28px 28px
+      rgba(0,0,0,.35)
+    );
+
+  transition:
+    transform .5s
+    cubic-bezier(.2,.8,.2,1),
+    filter .5s ease;
+}
+
+
+/* HOVER */
+
+.ebook-item:hover
+.ebook-image {
+
+  transform:
+    translateY(-14px)
+    scale(1.025);
+
+  filter:
+    drop-shadow(
+      0 40px 35px
+      rgba(0,0,0,.45)
+    );
+}
+
+
+/* =====================================================
+   PEQUEÑO MOVIMIENTO DIFERENTE
+   EN CADA LIBRO
+===================================================== */
+
+.ebook-item:nth-child(1)
+.ebook-image {
+
+  animation:
+    ebookFloat1
+    7s ease-in-out infinite;
+}
+
+
+.ebook-item:nth-child(2)
+.ebook-image {
+
+  animation:
+    ebookFloat2
+    7.5s ease-in-out infinite;
+}
+
+
+.ebook-item:nth-child(3)
+.ebook-image {
+
+  animation:
+    ebookFloat3
+    6.8s ease-in-out infinite;
+}
+
+
+@keyframes ebookFloat1 {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      rotate(-.4deg);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-7px)
+      rotate(.3deg);
+
+  }
+
+}
+
+
+@keyframes ebookFloat2 {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(-3px);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-11px);
+
+  }
+
+}
+
+
+@keyframes ebookFloat3 {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      rotate(.4deg);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-8px)
+      rotate(-.3deg);
+
+  }
+
+}
+
+
+/* =====================================================
+   INFORMACIÓN DEBAJO DEL LIBRO
+===================================================== */
+
+.ebook-info {
+
+  margin-top: 18px;
+
+  opacity: 0;
+
+  transform:
+    translateY(10px);
+
+  transition:
+    opacity .35s ease,
+    transform .35s ease;
+}
+
+
+.ebook-item:hover
+.ebook-info {
+
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+
+.ebook-info > span {
+
+  color:
+    rgba(255,255,255,.6);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: .18em;
+}
+
+
+.ebook-info h3 {
+
+  margin: 6px 0;
+
+  color: white;
+
+  font-size: 17px;
+
+  font-weight: 600;
+}
+
+
+.ebook-info a {
+
+  color:
+    var(--biblioteca-crema);
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+
+/* =====================================================
+   EBOOK DEL MEDIO DESTACADO
+===================================================== */
+
+.ebook-featured {
+
+  transform:
+    translateY(-10px);
+}
+
+
+.ebook-featured-label {
+
+  position: absolute;
+
+  z-index: 4;
+
+  top: 20px;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  padding:
+    7px 12px;
+
+  border-radius: 100px;
+
+  background:
+    rgba(18,59,63,.90);
+
+  border:
+    1px solid rgba(255,255,255,.25);
+
+  color: white;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: .12em;
+
+  backdrop-filter:
+    blur(10px);
+
+  box-shadow:
+    0 8px 20px
+    rgba(0,0,0,.15);
+}
+
+
+/* =====================================================
+   DECORACIONES
+===================================================== */
+
+.biblioteca-deco {
+
+  position: absolute;
+
+  z-index: 2;
+
+  color:
+    rgba(242,238,228,.35);
+
+  pointer-events: none;
+
+  animation:
+    bibliotecaDeco
+    6s ease-in-out infinite;
+}
+
+
+.deco-1 {
+
+  left: 5%;
+  top: 26%;
+
+  font-size: 24px;
+}
+
+
+.deco-2 {
+
+  right: 5%;
+  top: 34%;
+
+  font-size: 33px;
+
+  animation-delay: -2s;
+}
+
+
+.deco-3 {
+
+  left: 8%;
+  bottom: 12%;
+
+  font-size: 18px;
+
+  animation-delay: -4s;
+}
+
+
+@keyframes bibliotecaDeco {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      rotate(0);
+
+    opacity: .3;
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-12px)
+      rotate(18deg);
+
+    opacity: .7;
+
+  }
+
+}
+
+
+/* =====================================================
+   PIE DE LA SECCIÓN
+===================================================== */
+
+.biblioteca-footer {
+
+  margin-top: 25px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 18px;
+
+  text-align: center;
+}
+
+
+.biblioteca-footer p {
+
+  margin: 0;
+
+  color:
+    rgba(255,255,255,.83);
+
+  font-size: 11px;
+
+  line-height: 1.9;
+
+  font-weight: 500;
+
+  letter-spacing: .22em;
+}
+
+
+.biblioteca-footer em {
+
+  color:
+    var(--biblioteca-crema);
+
+  font-family: Georgia, serif;
+
+  font-size: 17px;
+
+  font-weight: 400;
+
+  letter-spacing: .08em;
+}
+
+
+.footer-flower {
+
+  color:
+    var(--biblioteca-crema);
+
+  font-size: 18px;
+
+  animation:
+    footerFlowerSpin
+    8s linear infinite;
+}
+
+
+@keyframes footerFlowerSpin {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+
+  .biblioteca-aucaria {
+
+    min-height: auto;
+
+    padding:
+      75px 0 55px;
+  }
+
+
+  .biblioteca-container {
+
+    width:
+      calc(100% - 40px);
+  }
+
+
+  .biblioteca-books {
+
+    gap: 15px;
+  }
+
+
+  .biblioteca-header h2 {
+
+    font-size: 33px;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+  .biblioteca-aucaria {
+
+    padding:
+      70px 0 50px;
+
+    background-position:
+      center top;
+  }
+
+
+  .biblioteca-container {
+
+    width:
+      calc(100% - 28px);
+  }
+
+
+  .biblioteca-header {
+
+    margin-bottom: 40px;
+  }
+
+
+  .biblioteca-header h2 {
+
+    font-size: 28px;
+
+    letter-spacing: .15em;
+  }
+
+
+  .biblioteca-header p {
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    letter-spacing: .08em;
+  }
+
+
+  /*
+  LOS 3 LIBROS PASAN
+  UNO DEBAJO DEL OTRO
+  */
+
+  .biblioteca-books {
+
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+
+    max-width: 420px;
+
+    margin:
+      35px auto 0;
+  }
+
+
+  .ebook-item {
+
+    transform: none;
+  }
+
+
+  .ebook-image {
+
+    max-height: none;
+
+    width: 100%;
+  }
+
+
+  /* Mostrar info siempre
+     porque no hay hover real */
+
+  .ebook-info {
+
+    opacity: 1;
+
+    transform: none;
+  }
+
+
+  .ebook-featured {
+
+    transform: none;
+  }
+
+
+  .biblioteca-footer {
+
+    margin-top: 55px;
+  }
+
+
+  .biblioteca-footer p {
+
+    font-size: 9px;
+
+    letter-spacing: .12em;
+  }
+
+
+  .biblioteca-footer em {
+
+    font-size: 15px;
+  }
+
+}
+
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ebook-image,
+  .biblioteca-symbol,
+  .biblioteca-deco,
+  .footer-flower {
+
+    animation: none !important;
+  }
+
+}
+
+/* =====================================================
+   REDUCIR MOVIMIENTO
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .kits-floating,
+  .kits-nature-float,
+  .kits-side-icon,
+  .kits-footer-flower {
+
+    animation: none !important;
+  }
+
+  .kits-river-text {
+    opacity: .7;
+  }
+
+}
+
+
+/* =====================================================
+   AUCARIA — CONTACTO CUTE
+===================================================== */
+
+.aucaria-contact {
+
+  --contact-green: #123b3f;
+  --contact-green-dark: #0b2c2f;
+
+  --contact-sage: #cad8cf;
+  --contact-sage-light: #e7eee9;
+  --contact-sage-extra: #f2f6f2;
+
+  --contact-cream: #f8f3e9;
+  --contact-cream-light: #fffdf7;
+
+  --contact-rose: #d8a8a0;
+  --contact-rose-light: #f4ded8;
+
+  --contact-black: #171817;
+  --contact-text: #292b29;
+
+  position: relative;
+
+  padding: 120px 0 70px;
+
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(216, 168, 160, .18),
+      transparent 25%
+    ),
+
+    radial-gradient(
+      circle at 90% 15%,
+      rgba(202, 216, 207, .30),
+      transparent 28%
+    ),
+
+    linear-gradient(
+      180deg,
+      #fffdf8 0%,
+      #f8f3e9 60%,
+      #f3f0e5 100%
+    );
+
+  overflow: hidden;
+}
+
+
+/* =====================================================
+   CONTENEDOR
+===================================================== */
+
+.contact-container {
+
+  width: min(1180px, calc(100% - 50px));
+
+  margin: 0 auto;
+
+  position: relative;
+
+  z-index: 3;
+}
+
+
+/* =====================================================
+   HALOS DE LUZ
+===================================================== */
+
+.contact-glow {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(15px);
+
+  pointer-events: none;
+}
+
+
+.contact-glow-1 {
+
+  width: 600px;
+  height: 600px;
+
+  left: -350px;
+  top: 20%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(216,168,160,.18),
+      transparent 67%
+    );
+}
+
+
+.contact-glow-2 {
+
+  width: 700px;
+  height: 700px;
+
+  right: -400px;
+  bottom: -200px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(18,59,63,.11),
+      transparent 68%
+    );
+}
+
+
+/* =====================================================
+   ELEMENTOS FLOTANTES
+===================================================== */
+
+.contact-float {
+
+  position: absolute;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
+
+/* MARIPOSAS */
+
+.float-butterfly-1 {
+
+  left: 7%;
+  top: 8%;
+
+  font-size: 29px;
+
+  animation:
+    butterflyFly 8s ease-in-out infinite;
+}
+
+
+.float-butterfly-2 {
+
+  right: 7%;
+  top: 37%;
+
+  font-size: 24px;
+
+  animation:
+    butterflyFly2 9s ease-in-out infinite;
+}
+
+
+/* FLORES */
+
+.float-flower-1 {
+
+  left: 3%;
+  top: 48%;
+
+  color: rgba(18,59,63,.24);
+
+  font-size: 48px;
+
+  animation:
+    flowerRotate 12s linear infinite;
+}
+
+
+.float-flower-2 {
+
+  right: 5%;
+  top: 9%;
+
+  color: rgba(216,168,160,.60);
+
+  font-size: 34px;
+
+  animation:
+    flowerRotate 9s linear infinite reverse;
+}
+
+
+.float-flower-3 {
+
+  right: 9%;
+  bottom: 12%;
+
+  color: rgba(18,59,63,.17);
+
+  font-size: 60px;
+
+  animation:
+    flowerRotate 14s linear infinite;
+}
+
+
+/* VAQUITAS */
+
+.float-ladybug-1 {
+
+  left: 13%;
+  bottom: 15%;
+
+  font-size: 20px;
+
+  animation:
+    ladybugMove 10s ease-in-out infinite;
+}
+
+
+.float-ladybug-2 {
+
+  right: 15%;
+  bottom: 5%;
+
+  font-size: 16px;
+
+  animation:
+    ladybugMove 12s ease-in-out infinite reverse;
+}
+
+
+/* CORAZONES */
+
+.float-heart-1 {
+
+  left: 22%;
+  top: 5%;
+
+  color: var(--contact-rose);
+
+  font-size: 23px;
+
+  animation:
+    heartPulse 3s ease-in-out infinite;
+}
+
+
+.float-heart-2 {
+
+  right: 22%;
+  top: 20%;
+
+  color: rgba(216,168,160,.55);
+
+  font-size: 17px;
+
+  animation:
+    heartPulse 4s ease-in-out infinite;
+}
+
+
+/* ESTRELLAS */
+
+.float-star-1 {
+
+  left: 9%;
+  top: 30%;
+
+  color: rgba(18,59,63,.35);
+
+  font-size: 18px;
+
+  animation:
+    starTwinkle 3s ease-in-out infinite;
+}
+
+
+.float-star-2 {
+
+  right: 11%;
+  top: 62%;
+
+  color: rgba(216,168,160,.80);
+
+  font-size: 19px;
+
+  animation:
+    starTwinkle 2.5s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   ANIMACIONES DECORATIVAS
+===================================================== */
+
+@keyframes butterflyFly {
+
+  0%,
+  100% {
+
+    transform:
+      translate(0, 0)
+      rotate(-8deg);
+
+  }
+
+  25% {
+
+    transform:
+      translate(18px, -16px)
+      rotate(8deg);
+
+  }
+
+  50% {
+
+    transform:
+      translate(32px, 5px)
+      rotate(-5deg);
+
+  }
+
+  75% {
+
+    transform:
+      translate(12px, 18px)
+      rotate(7deg);
+
+  }
+
+}
+
+
+@keyframes butterflyFly2 {
+
+  0%,
+  100% {
+
+    transform:
+      translate(0, 0)
+      rotate(8deg);
+
+  }
+
+  40% {
+
+    transform:
+      translate(-25px, -18px)
+      rotate(-10deg);
+
+  }
+
+  70% {
+
+    transform:
+      translate(-12px, 14px)
+      rotate(5deg);
+
+  }
+
+}
+
+
+@keyframes flowerRotate {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+@keyframes ladybugMove {
+
+  0%,
+  100% {
+
+    transform:
+      translateX(0)
+      rotate(-5deg);
+
+  }
+
+  50% {
+
+    transform:
+      translateX(35px)
+      rotate(12deg);
+
+  }
+
+}
+
+
+@keyframes heartPulse {
+
+  0%,
+  100% {
+
+    transform: scale(1);
+
+  }
+
+  50% {
+
+    transform: scale(1.25);
+
+  }
+
+}
+
+
+@keyframes starTwinkle {
+
+  0%,
+  100% {
+
+    transform: scale(.7);
+
+    opacity: .3;
+
+  }
+
+  50% {
+
+    transform:
+      scale(1.25)
+      rotate(15deg);
+
+    opacity: 1;
+
+  }
+
+}
+
+
+/* =====================================================
+   ENCABEZADO
+===================================================== */
+
+.contact-heading {
+
+  max-width: 840px;
+
+  margin:
+    0 auto 70px;
+
+  text-align: center;
+}
+
+
+.contact-eyebrow {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 9px 15px;
+
+  margin-bottom: 24px;
+
+  border-radius: 100px;
+
+  background:
+    var(--contact-sage-light);
+
+  color:
+    var(--contact-green);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: .16em;
+}
+
+
+.contact-heading h2 {
+
+  margin: 0;
+
+  color:
+    var(--contact-black);
+
+  font-size:
+    clamp(45px, 6vw, 78px);
+
+  line-height: .96;
+
+  letter-spacing: -.055em;
+
+  font-weight: 700;
+}
+
+
+.contact-heading h2 span {
+
+  color:
+    var(--contact-green);
+}
+
+
+.contact-intro {
+
+  margin:
+    28px auto 0;
+
+  color:
+    var(--contact-text);
+
+  font-size: 21px;
+
+  line-height: 1.5;
+
+  font-weight: 500;
+}
+
+
+.contact-intro strong {
+
+  color:
+    var(--contact-green);
+
+  font-weight: 800;
+}
+
+
+.contact-description {
+
+  max-width: 650px;
+
+  margin:
+    13px auto 0;
+
+  color: #343735;
+
+  font-size: 16px;
+
+  line-height: 1.7;
+
+  font-weight: 500;
+}
+
+
+/* =====================================================
+   CONTENIDO
+===================================================== */
+
+.contact-content {
+
+  display: grid;
+
+  grid-template-columns:
+    .8fr 1.2fr;
+
+  gap: 45px;
+
+  align-items: stretch;
+}
+
+
+/* =====================================================
+   JARDÍN IZQUIERDO
+===================================================== */
+
+.contact-garden {
+
+  position: relative;
+
+  
+
+  
+}
+
+
+/* patrón súper sutil */
+
+.contact-garden::before {
+
+  content: "✿  ·  ✦  ·  ❀  ·  ✿  ·  ✦";
+
+  position: absolute;
+
+  left: 28px;
+  bottom: 92px;
+
+  color:
+    rgba(18,59,63,.13);
+
+  font-size: 14px;
+
+  letter-spacing: .8em;
+}
+
+
+/* MENSAJE */
+
+.garden-message {
+
+  position: relative;
+
+  z-index: 3;
+
+  max-width: auto;
+
+
+  padding: 50px 40px;
+
+  border-radius: 30px;
+
+  background:
+    radial-gradient(
+      circle at 80% 15%,
+      rgba(255,255,255,.7),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      155deg,
+      #e7eee9,
+      #d9e4dc
+    );
+
+  border:
+    1px solid rgba(18,59,63,.10);
+
+  overflow: hidden;
+
+}
+
+
+
+.garden-small {
+
+  display: block;
+
+  margin-bottom: 15px;
+
+  color:
+    var(--contact-green);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: .16em;
+}
+
+
+.garden-message h3 {
+
+  margin: 0 0 18px;
+
+  color:
+    var(--contact-green);
+
+  font-size:
+    clamp(30px,3vw,43px);
+
+  line-height: 1.04;
+
+  letter-spacing: -.045em;
+
+  font-weight: 700;
+}
+
+
+.garden-message h3 span {
+
+  color:
+    var(--contact-rose);
+
+  animation:
+    heartPulse 3s ease-in-out infinite;
+
+  display: inline-block;
+}
+
+
+.garden-message p {
+
+  margin: 0;
+
+  color: #26312c;
+
+  font-size: 15px;
+
+  line-height: 1.65;
+
+  font-weight: 500;
+}
+
+
+/* =====================================================
+   ROSA
+===================================================== */
+
+.garden-rose {
+
+  position: absolute;
+
+  right: 30px;
+  bottom: 100px;
+
+  font-size: 125px;
+
+  transform:
+    rotate(8deg);
+
+  filter:
+    drop-shadow(
+      0 20px 20px
+      rgba(18,59,63,.10)
+    );
+
+  animation:
+    roseFloat 6s ease-in-out infinite;
+}
+
+
+@keyframes roseFloat {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      rotate(8deg);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-12px)
+      rotate(3deg);
+
+  }
+
+}
+
+
+/* =====================================================
+   NOTITAS
+===================================================== */
+
+.garden-note {
+
+  position: absolute;
+
+  z-index: 4;
+
+  padding:
+    12px 15px;
+
+  border-radius: 13px;
+
+  background:
+    rgba(255,255,255,.78);
+
+  border:
+    1px solid rgba(18,59,63,.10);
+
+  box-shadow:
+    0 13px 30px
+    rgba(18,59,63,.08);
+
+  color:
+    var(--contact-green);
+
+  font-size: 11px;
+
+  line-height: 1.45;
+
+  font-weight: 700;
+
+  backdrop-filter:
+    blur(8px);
+}
+
+
+.garden-note span {
+
+  margin-right: 5px;
+
+  color:
+    var(--contact-rose);
+}
+
+
+.garden-note-1 {
+
+  right: 35px;
+  bottom: 235px;
+
+  transform:
+    rotate(-5deg);
+
+  animation:
+    noteFloat1
+    5s ease-in-out infinite;
+}
+
+
+.garden-note-2 {
+
+  right: 25px;
+  bottom: 295px;
+
+  transform:
+    rotate(4deg);
+
+  animation:
+    noteFloat2
+    5.8s ease-in-out infinite;
+}
+
+
+@keyframes noteFloat1 {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      rotate(-5deg);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-8px)
+      rotate(-2deg);
+
+  }
+
+}
+
+
+@keyframes noteFloat2 {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      rotate(4deg);
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-10px)
+      rotate(7deg);
+
+  }
+
+}
+
+
+/* =====================================================
+   JARDINCITO ABAJO
+===================================================== */
+
+.garden-bottom {
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+
+  padding: 20px 25px;
+
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-around;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(18,59,63,.07),
+      transparent
+    );
+}
+
+
+.garden-bottom span {
+
+  display: inline-block;
+
+  font-size: 28px;
+
+  transform-origin:
+    bottom center;
+
+  animation:
+    plantMove 4s ease-in-out infinite;
+}
+
+
+.garden-bottom span:nth-child(2) {
+  animation-delay: -.8s;
+}
+
+
+.garden-bottom span:nth-child(3) {
+  animation-delay: -1.6s;
+}
+
+
+.garden-bottom span:nth-child(4) {
+  animation-delay: -2.4s;
+}
+
+
+.garden-bottom span:nth-child(5) {
+  animation-delay: -3.2s;
+}
+
+
+@keyframes plantMove {
+
+  0%,
+  100% {
+
+    transform:
+      rotate(-3deg);
+
+  }
+
+  50% {
+
+    transform:
+      rotate(5deg);
+
+  }
+
+}
+
+
+/* =====================================================
+   TARJETA FORMULARIO
+===================================================== */
+
+.contact-form-card {
+
+  position: relative;
+
+  padding: 38px;
+
+  border-radius: 30px;
+
+  background:
+    rgba(255,255,255,.88);
+
+  border:
+    1px solid rgba(18,59,63,.11);
+
+  box-shadow:
+    0 30px 80px
+    rgba(18,59,63,.10);
+
+  backdrop-filter:
+    blur(15px);
+}
+
+
+/* pequeño borde interno */
+
+.contact-form-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 9px;
+
+  border:
+    1px dashed
+    rgba(18,59,63,.10);
+
+  border-radius: 23px;
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   HEADER DEL FORM
+===================================================== */
+
+.form-card-header {
+
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding-bottom: 27px;
+
+  margin-bottom: 27px;
+
+  border-bottom:
+    1px dashed
+    rgba(18,59,63,.16);
+}
+
+
+.form-heart {
+
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 15px;
+
+  background:
+    var(--contact-rose-light);
+
+  color:
+    var(--contact-rose);
+
+  font-size: 23px;
+
+  font-weight: 700;
+
+  animation:
+    heartPulse 3.5s ease-in-out infinite;
+}
+
+
+.form-card-header div:nth-child(2) {
+
+  flex: 1;
+}
+
+
+.form-card-header span {
+
+  color:
+    var(--contact-green);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: .14em;
+}
+
+
+.form-card-header h3 {
+
+  margin:
+    4px 0 0;
+
+  color:
+    var(--contact-green);
+
+  font-size: 26px;
+
+  letter-spacing: -.035em;
+
+  font-weight: 700;
+}
+
+
+.form-mini-flower {
+
+  font-size: 22px !important;
+
+  animation:
+    flowerRotate
+    8s linear infinite;
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.aucaria-form {
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* CAMPOS */
+
+.form-group {
+
+  margin-bottom: 20px;
+}
+
+
+.form-group label {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-bottom: 8px;
+
+  color:
+    var(--contact-green);
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+
+.form-group label span {
+
+  color:
+    var(--contact-rose);
+
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.input-wrapper {
+
+  position: relative;
+}
+
+
+.input-icon {
+
+  position: absolute;
+
+  left: 16px;
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+  z-index: 3;
+
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background:
+    var(--contact-sage-light);
+
+  color:
+    var(--contact-green);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  transition:
+    transform .3s ease,
+    background .3s ease,
+    color .3s ease;
+}
+
+
+.aucaria-form input {
+
+  width: 100%;
+
+  height: 57px;
+
+  box-sizing: border-box;
+
+  padding:
+    0 18px 0 56px;
+
+  border:
+    1px solid
+    rgba(18,59,63,.12);
+
+  border-radius: 14px;
+
+  outline: none;
+
+  background:
+    #fbfcf9;
+
+  color:
+    var(--contact-black);
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  transition:
+    border-color .3s ease,
+    background .3s ease,
+    box-shadow .3s ease,
+    transform .3s ease;
+}
+
+
+.aucaria-form input::placeholder,
+.aucaria-form textarea::placeholder {
+
+  color: #888e89;
+
+  opacity: 1;
+}
+
+
+/* FOCUS */
+
+.input-wrapper:focus-within
+.input-icon {
+
+  transform:
+    translateY(-50%)
+    rotate(-8deg)
+    scale(1.08);
+
+  background:
+    var(--contact-green);
+
+  color: white;
+}
+
+
+.aucaria-form input:focus {
+
+  border-color:
+    rgba(18,59,63,.35);
+
+  background: white;
+
+  box-shadow:
+    0 8px 25px
+    rgba(18,59,63,.08);
+
+  transform:
+    translateY(-2px);
+}
+
+
+/* =====================================================
+   TEXTAREA
+===================================================== */
+
+.textarea-wrapper {
+
+  position: relative;
+}
+
+
+.aucaria-form textarea {
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  min-height: 150px;
+
+  padding: 17px 50px 17px 17px;
+
+  resize: vertical;
+
+  border:
+    1px solid
+    rgba(18,59,63,.12);
+
+  border-radius: 16px;
+
+  outline: none;
+
+  background:
+    #fbfcf9;
+
+  color:
+    var(--contact-black);
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+
+  font-weight: 500;
+
+  transition:
+    border-color .3s ease,
+    background .3s ease,
+    box-shadow .3s ease,
+    transform .3s ease;
+}
+
+
+.aucaria-form textarea:focus {
+
+  border-color:
+    rgba(18,59,63,.35);
+
+  background: white;
+
+  box-shadow:
+    0 8px 25px
+    rgba(18,59,63,.08);
+
+  transform:
+    translateY(-2px);
+}
+
+
+.textarea-flower {
+
+  position: absolute;
+
+  right: 17px;
+  bottom: 14px;
+
+  color:
+    var(--contact-rose);
+
+  font-size: 20px;
+
+  transition:
+    transform .4s ease;
+}
+
+
+.textarea-wrapper:focus-within
+.textarea-flower {
+
+  transform:
+    rotate(90deg)
+    scale(1.15);
+}
+
+
+/* =====================================================
+   BOTÓN ENVIAR
+===================================================== */
+
+.contact-submit {
+
+  width: 100%;
+
+  height: 60px;
+
+  margin-top: 5px;
+
+  padding: 0 19px;
+
+  border: none;
+
+  border-radius: 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  background:
+    var(--contact-green);
+
+  color: white;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  box-shadow:
+    0 14px 30px
+    rgba(18,59,63,.16);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    background .3s ease;
+}
+
+
+.contact-submit:hover {
+
+  transform:
+    translateY(-4px);
+
+  background:
+    var(--contact-green-dark);
+
+  box-shadow:
+    0 20px 38px
+    rgba(18,59,63,.22);
+}
+
+
+.submit-flower {
+
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,255,255,.13);
+
+  font-size: 15px;
+
+  transition:
+    transform .5s ease;
+}
+
+
+.contact-submit:hover
+.submit-flower {
+
+  transform:
+    rotate(180deg);
+}
+
+
+.submit-text {
+
+  flex: 1;
+
+  text-align: left;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+
+.submit-arrow {
+
+  font-size: 21px;
+
+  transition:
+    transform .3s ease;
+}
+
+
+.contact-submit:hover
+.submit-arrow {
+
+  transform:
+    translateX(6px);
+}
+
+
+/* =====================================================
+   NOTITA DEBAJO
+===================================================== */
+
+.form-love-note {
+
+  margin-top: 22px;
+
+  padding: 15px 17px;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 11px;
+
+  border-radius: 13px;
+
+  background:
+    var(--contact-rose-light);
+
+  border:
+    1px solid
+    rgba(216,168,160,.25);
+}
+
+
+.love-note-heart {
+
+  flex-shrink: 0;
+
+  color:
+    #9f625e;
+
+  font-size: 15px;
+
+  animation:
+    heartPulse
+    3s ease-in-out infinite;
+}
+
+
+.form-love-note p {
+
+  margin: 0;
+
+  color: #543d3a;
+
+  font-size: 12px;
+
+  line-height: 1.55;
+
+  font-weight: 500;
+}
+
+
+.form-love-note strong {
+
+  color: #754b48;
+
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   CIERRE
+===================================================== */
+
+.contact-ending {
+
+  margin-top: 65px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  text-align: center;
+}
+
+
+.contact-ending span {
+
+  color:
+    var(--contact-green);
+
+  font-size: 15px;
+
+  animation:
+    flowerRotate
+    9s linear infinite;
+}
+
+
+.contact-ending span:last-child {
+
+  animation-direction:
+    reverse;
+}
+
+
+.contact-ending p {
+
+  margin: 0;
+
+  color:
+    var(--contact-green);
+
+  font-family:
+    Georgia, serif;
+
+  font-style: italic;
+
+  font-size: 17px;
+
+  letter-spacing: .02em;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 950px) {
+
+  .contact-content {
+
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .contact-garden {
+
+    min-height: 470px;
+  }
+
+
+  .garden-rose {
+
+    font-size: 100px;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 650px) {
+
+  .aucaria-contact {
+
+    padding:
+      80px 0 50px;
+  }
+
+
+  .contact-container {
+
+    width:
+      calc(100% - 26px);
+  }
+
+
+  .contact-heading {
+
+    margin-bottom: 50px;
+  }
+
+
+  .contact-heading h2 {
+
+    font-size: 43px;
+  }
+
+
+  .contact-intro {
+
+    font-size: 18px;
+  }
+
+
+  .contact-description {
+
+    font-size: 15px;
+  }
+
+
+  .contact-garden {
+
+    min-height: 430px;
+
+    padding:
+      35px 25px;
+  }
+
+
+  .garden-message h3 {
+
+    font-size: 34px;
+  }
+
+
+  .garden-message p {
+
+    font-size: 14px;
+  }
+
+
+  .garden-rose {
+
+    right: 15px;
+    bottom: 80px;
+
+    font-size: 80px;
+  }
+
+
+  .garden-note {
+
+    font-size: 9px;
+  }
+
+
+  .garden-note-1 {
+
+    left: 20px;
+    bottom: 160px;
+  }
+
+
+  .garden-note-2 {
+
+    right: 17px;
+    bottom: 240px;
+  }
+
+
+  .contact-form-card {
+
+    padding:
+      29px 22px;
+
+    border-radius: 24px;
+  }
+
+
+  .form-card-header h3 {
+
+    font-size: 23px;
+  }
+
+
+  .contact-ending p {
+
+    font-size: 14px;
+  }
+
+
+  /* bajamos un poquito
+     las decoraciones */
+
+  .float-flower-1,
+  .float-star-1,
+  .float-heart-2 {
+
+    display: none;
+  }
+
+}
+
+
+/* =====================================================
+   REDUCIR MOVIMIENTO
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .contact-float,
+  .garden-rose,
+  .garden-note,
+  .garden-bottom span,
+  .form-heart,
+  .form-mini-flower,
+  .contact-ending span {
+
+    animation: none !important;
+  }
+
+}
+
+/* =====================================================
+   AUCARIA — FOOTER
+===================================================== */
+
+.aucaria-footer {
+
+  --footer-green: #123b3f;
+  --footer-green-dark: #0b2c2f;
+  --footer-cream: #f8f3e9;
+
+  position: relative;
+
+  min-height: auto;
+
+  padding: 25px 30px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255,255,255,.06),
+      transparent 38%
+    ),
+    var(--footer-green);
+
+  overflow: hidden;
+}
+
+
+/* =====================================================
+   CONTENIDO
+===================================================== */
+
+.aucaria-footer-content {
+
+  position: relative;
+
+  z-index: 3;
+
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+
+/* TEXTO PEQUEÑO */
+
+.footer-mini {
+
+  display: block;
+
+  margin-bottom: 8px;
+
+  color:
+    rgba(255,255,255,.55);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: .25em;
+}
+
+
+/* FRASE PRINCIPAL */
+
+.footer-big-copy {
+
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size:
+    16px;
+
+  line-height: 1.05;
+
+  letter-spacing: -.045em;
+
+  font-weight: 500;
+}
+
+
+.footer-big-copy strong {
+
+  color:
+    var(--footer-cream);
+
+  font-weight: 800;
+}
+
+
+/* CORAZÓN */
+
+.footer-heart {
+
+  display: inline-block;
+
+  margin-left: 7px;
+
+  color: #e6b3ad;
+
+  font-size: .65em;
+
+  animation:
+    footerHeart 2.5s ease-in-out infinite;
+}
+
+
+@keyframes footerHeart {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.22);
+  }
+
+}
+
+
+/* =====================================================
+   MINI LÍNEA DE ESTRELLAS
+===================================================== */
+
+.footer-magic-line {
+
+  margin-top: 10px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  color:
+    rgba(255,255,255,.65);
+}
+
+
+.footer-magic-line span:nth-child(1),
+.footer-magic-line span:nth-child(3) {
+
+  font-size: 13px;
+
+  animation:
+    footerTwinkle
+    3s ease-in-out infinite;
+}
+
+
+.footer-magic-line span:nth-child(2) {
+
+  font-size: 20px;
+
+  animation:
+    footerTwinkle
+    2.4s ease-in-out infinite .5s;
+}
+
+
+@keyframes footerTwinkle {
+
+  0%,
+  100% {
+
+    opacity: .35;
+
+    transform:
+      scale(.7)
+      rotate(0deg);
+
+  }
+
+  50% {
+
+    opacity: 1;
+
+    transform:
+      scale(1.25)
+      rotate(15deg);
+
+  }
+
+}
+
+
+/* =====================================================
+   ESTRELLITAS FLOTANTES
+===================================================== */
+
+.footer-star {
+
+  position: absolute;
+
+  z-index: 1;
+
+  color:
+    rgba(255,255,255,.25);
+
+  pointer-events: none;
+
+  animation:
+    footerStarFloat
+    6s ease-in-out infinite;
+}
+
+
+.footer-star-1 {
+
+  left: 8%;
+  top: 18%;
+
+  font-size: 18px;
+}
+
+
+.footer-star-2 {
+
+  left: 22%;
+  top: 33%;
+
+  font-size: 11px;
+
+  animation-delay: -1s;
+}
+
+
+.footer-star-3 {
+
+  right: 9%;
+  top: 22%;
+
+  font-size: 23px;
+
+  animation-delay: -2s;
+}
+
+
+.footer-star-4 {
+
+  right: 25%;
+  top: 45%;
+
+  font-size: 15px;
+
+  animation-delay: -3s;
+}
+
+
+.footer-star-5 {
+
+  left: 47%;
+  top: 10%;
+
+  font-size: 12px;
+
+  animation-delay: -4s;
+}
+
+
+@keyframes footerStarFloat {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      rotate(0deg);
+
+    opacity: .25;
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-12px)
+      rotate(20deg);
+
+    opacity: .8;
+
+  }
+
+}
+
+
+/* =====================================================
+   BOSQUE DE ARAUCARIAS
+===================================================== */
+
+.footer-forest {
+
+  position: absolute;
+
+  z-index: 1;
+
+  left: 0;
+  bottom: -8px;
+
+  width: 100%;
+
+  height: 115px;
+
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-around;
+
+  padding: 0 2%;
+
+  color:
+    var(--footer-green-dark);
+
+  pointer-events: none;
+}
+
+
+/* CADA ÁRBOL */
+
+.araucaria {
+
+  display: inline-block;
+
+  line-height: .7;
+
+  transform-origin:
+    bottom center;
+
+  opacity: .75;
+
+  animation:
+    araucariaMove
+    6s ease-in-out infinite;
+}
+
+
+.araucaria-1 {
+  font-size: 115px;
+}
+
+.araucaria-2 {
+  font-size: 80px;
+  animation-delay: -.8s;
+}
+
+.araucaria-3 {
+  font-size: 135px;
+  animation-delay: -1.5s;
+}
+
+.araucaria-4 {
+  font-size: 70px;
+  animation-delay: -2.2s;
+}
+
+.araucaria-5 {
+  font-size: 120px;
+  animation-delay: -2.8s;
+}
+
+.araucaria-6 {
+  font-size: 90px;
+  animation-delay: -3.4s;
+}
+
+.araucaria-7 {
+  font-size: 140px;
+  animation-delay: -4s;
+}
+
+.araucaria-8 {
+  font-size: 82px;
+  animation-delay: -4.7s;
+}
+
+
+@keyframes araucariaMove {
+
+  0%,
+  100% {
+
+    transform:
+      rotate(-1deg);
+
+  }
+
+  50% {
+
+    transform:
+      rotate(1.5deg);
+
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+  .aucaria-footer {
+
+    min-height: auto;
+
+    padding: 24px 22px;
+  }
+
+
+  .aucaria-footer-content {
+
+    margin-bottom: 0;
+  }
+
+
+  .footer-big-copy {
+
+    font-size: 16px;
+
+    line-height: 1.2;
+  }
+
+
+  .footer-big-copy br {
+
+    display: none;
+  }
+
+
+  .footer-mini {
+
+    font-size: 9px;
+  }
+
+
+  .footer-forest {
+
+    height: 90px;
+  }
+
+
+  .araucaria-1,
+  .araucaria-3,
+  .araucaria-5,
+  .araucaria-7 {
+
+    font-size: 95px;
+  }
+
+
+  .araucaria-2,
+  .araucaria-4,
+  .araucaria-6,
+  .araucaria-8 {
+
+    font-size: 60px;
+  }
+
+}
+
+
+/* =====================================================
+   REDUCIR MOVIMIENTO
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .footer-star,
+  .footer-heart,
+  .footer-magic-line span,
+  .araucaria {
+
+    animation: none !important;
+  }
+
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1150px) {
+
+  .aucaria-main-services {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+
+@media (max-width: 760px) {
+
+  .aucaria-services {
+    padding: 80px 0 55px;
+  }
+
+  .aucaria-services-header {
+    width: calc(100% - 36px);
+    text-align: left;
+  }
+
+  .aucaria-services-header p {
+    margin-left: 0;
+  }
+
+  .aucaria-main-services {
+    width: calc(100% - 36px);
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .aucaria-service-card {
+    min-height: 260px;
+  }
+
+  .aucaria-marquees {
+    margin-top: 40px;
+  }
+
+  .marquee-group span {
+    height: 44px;
+    padding: 0 17px;
+    font-size: 12px;
+  }
+
+}
+
+
+/* ACCESIBILIDAD */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .aucaria-service-card,
+  .marquee-track {
+    animation: none !important;
+  }
+
+}
+
+/* ==================================================
+   SERVICIOS
+================================================== */
+
+.servicios {
+  padding: 120px 5%;
+  overflow: hidden;
+}
+
+.servicios-container {
+  max-width: 1250px;
+  margin: auto;
+}
+
+.servicios-header {
+  margin-bottom: 100px;
+}
+
+.servicios-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  color: var(--violeta);
+  margin-bottom: 35px;
+}
+
+.servicios-eyebrow span {
+  width: 40px;
+  height: 1px;
+  background: var(--violeta);
+}
+
+.servicios-intro {
+  display: grid;
+  grid-template-columns: 1.7fr .8fr;
+  gap: 80px;
+  align-items: end;
+}
+
+.servicios-intro h2 {
+  max-width: 820px;
+  font-size: clamp(42px, 5.8vw, 78px);
+  font-weight: 400;
+  line-height: .98;
+  letter-spacing: -3px;
+}
+
+.servicios-intro h2 em {
+  display: block;
+  font-family: "Playfair Display", serif;
+  color: var(--violeta);
+  font-weight: 500;
+}
+
+.servicios-intro p {
+  font-size: 16px;
+  line-height: 1.8;
+  opacity: .7;
+  padding-bottom: 7px;
+}
+
+
+/* ITEM DE SERVICIO */
+
+.servicio-item {
+  position: relative;
+  min-height: 580px;
+  padding: 90px 0;
+  border-top: 1px solid var(--linea);
+  display: grid;
+  grid-template-columns: 80px .8fr 1.2fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.servicio-item.reverse {
+  grid-template-columns: 80px 1.2fr .8fr;
+}
+
+.servicio-item.reverse .servicio-contenido {
+  grid-column: 3;
+}
+
+.servicio-item.reverse .servicio-imagen {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.servicio-numero {
+  align-self: start;
+  padding-top: 5px;
+  font-size: 13px;
+  color: var(--lavanda);
+  letter-spacing: 2px;
+}
+
+.servicio-contenido {
+  max-width: 450px;
+}
+
+.servicio-tag {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--lavanda);
+}
+
+.servicio-contenido h3 {
+  font-size: clamp(38px, 4vw, 60px);
+  font-weight: 400;
+  letter-spacing: -2px;
+  margin-bottom: 25px;
+}
+
+.servicio-contenido > p {
+  font-size: 16px;
+  line-height: 1.8;
+  opacity: .72;
+  margin-bottom: 30px;
+}
+
+.servicio-contenido ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 35px;
+}
+
+.servicio-contenido li {
+  padding: 10px 0;
+  font-size: 13px;
+  border-bottom: 1px solid var(--linea);
+}
+
+.servicio-contenido li::before {
+  content: "+";
+  margin-right: 8px;
+  color: var(--lavanda);
+}
+
+.servicio-link {
+  display: inline-flex;
+  gap: 18px;
+  align-items: center;
+  color: var(--oscuro);
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--oscuro);
+  font-size: 13px;
+  transition: .3s;
+}
+
+.servicio-link span {
+  transition: transform .3s;
+}
+
+.servicio-link:hover {
+  color: var(--violeta);
+  border-color: var(--violeta);
+}
+
+.servicio-link:hover span {
+  transform: translate(4px, -4px);
+}
+
+
+/* ==================================================
+   IMAGEN DE CADA SERVICIO
+   Mantiene el mismo tamaño del bloque anterior.
+================================================== */
+
+.servicio-imagen {
+  position: relative;
+  height: 440px;
+  overflow: hidden;
+  background: #ded5dc;
+  border-radius: 3px;
+}
+
+.servicio-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .65s cubic-bezier(.2,.75,.25,1);
+}
+
+.servicio-item:hover .servicio-imagen img {
+  transform: scale(1.025);
+}
+
+
+/* ==================================================
+   COMPLEMENTARIOS
+================================================== */
+
+.complementarios {
+  border-top: 1px solid var(--linea);
+  padding: 80px 0;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 100px;
+}
+
+.complementarios h3 {
+  font-size: 38px;
+  font-weight: 400;
+  max-width: 380px;
+}
+
+.complementarios-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-content: start;
+}
+
+.complementarios-lista span {
+  padding: 12px 20px;
+  border: 1px solid rgba(71,43,81,.25);
+  border-radius: 100px;
+  font-size: 12px;
+  transition: .3s;
+}
+
+.complementarios-lista span:hover {
+  background: var(--violeta);
+  border-color: var(--violeta);
+  color: white;
+}
+
+
+/* ==================================================
+   CTA
+================================================== */
+
+.servicios-cta {
+  background: var(--oscuro);
+  color: white;
+  padding: 90px 9%;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.servicios-cta > span {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--lavanda);
+  margin-bottom: 25px;
+}
+
+.servicios-cta h3 {
+  max-width: 720px;
+  margin: 0 auto 40px;
+  font-size: clamp(32px, 4vw, 55px);
+  line-height: 1.08;
+  font-weight: 300;
+  letter-spacing: -2px;
+}
+
+.servicios-cta a {
+  display: inline-flex;
+  gap: 15px;
+  align-items: center;
+  background: var(--crema);
+  color: var(--oscuro);
+  padding: 17px 28px;
+  text-decoration: none;
+  font-size: 13px;
+  transition: .3s;
+}
+
+.servicios-cta a:hover {
+  background: var(--lavanda);
+  color: white;
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 900px) {
+
+  .site-header {
+    padding: 18px 5% 0;
+  }
+
+  .logo-wrap {
+    min-height: 64px;
+  }
+
+  .site-logo {
+    height: 54px;
+  }
+
+  .main-nav {
+    position: relative;
+    min-height: 54px;
+  }
+
+  .menu-toggle {
+    display: flex;
+    margin: 0 auto;
+  }
+
+  .menu-toggle.is-open > span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .menu-toggle.is-open > span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.is-open > span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .menu-list {
+    position: absolute;
+    z-index: 30;
+    top: 54px;
+    left: -5vw;
+    right: -5vw;
+    display: grid;
+    gap: 0;
+    padding: 12px 5% 24px;
+    background: white;
+    border-top: 1px solid rgba(18,59,63,.08);
+    box-shadow: 0 18px 40px rgba(0,0,0,.07);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity .25s ease, visibility .25s ease, transform .25s ease;
+  }
+
+  .menu-list.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .menu-list li {
+    border-bottom: 1px solid rgba(18,59,63,.08);
+  }
+
+  .menu-list li:last-child {
+    border-bottom: 0;
+  }
+
+  .menu-list a {
+    display: block;
+    padding: 15px 4px;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .menu-list a::after {
+    display: none;
+  }
+
+  .hero-slider {
+    aspect-ratio: 16 / 8.5;
+  }
+
+  .slide-overlay {
+    left: 7%;
+    width: 75%;
+  }
+
+  .slider-arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  .slider-prev {
+    left: 14px;
+  }
+
+  .slider-next {
+    right: 14px;
+  }
+
+  .servicios {
+    padding: 80px 6%;
+  }
+
+  .servicios-intro {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .servicios-intro h2 {
+    letter-spacing: -2px;
+  }
+
+  .servicio-item,
+  .servicio-item.reverse {
+    grid-template-columns: 35px 1fr;
+    gap: 20px;
+  }
+
+  .servicio-contenido,
+  .servicio-item.reverse .servicio-contenido {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .servicio-imagen,
+  .servicio-item.reverse .servicio-imagen {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: 30px;
+  }
+
+  .complementarios {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 600px) {
+
+  .site-header {
+    padding-top: 14px;
+  }
+
+  .logo-wrap {
+    min-height: 58px;
+  }
+
+  .site-logo {
+    height: 48px;
+    max-width: 150px;
+  }
+
+  /*
+    El contenedor cambia de proporción, pero la imagen NO se deforma:
+    object-fit: cover conserva siempre su relación de aspecto.
+  */
+  .hero-slider {
+    aspect-ratio: 4 / 5;
+  }
+
+  .slide > img {
+    object-fit: cover;
+  }
+
+  .slide::after {
+    background: linear-gradient(0deg, rgba(10,37,39,.78), rgba(10,37,39,.08) 78%);
+  }
+
+  .slide-overlay {
+    left: 7%;
+    right: 7%;
+    top: auto;
+    bottom: 52px;
+    transform: none;
+    width: auto;
+  }
+
+  .slide-overlay > span {
+    margin-bottom: 12px;
+    font-size: 9px;
+  }
+
+  .slide-overlay h1,
+  .slide-overlay h2 {
+    font-size: clamp(34px, 11vw, 50px);
+    line-height: 1;
+    letter-spacing: -1.6px;
+  }
+
+  .slide-overlay p {
+    margin-top: 15px;
+    max-width: 92%;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .slide-overlay a {
+    margin-top: 18px;
+  }
+
+  .slider-arrow {
+    display: none;
+  }
+
+  .slider-dots {
+    bottom: 20px;
+  }
+
+  .announcement-bar {
+    padding: 18px 0;
+  }
+
+  .announcement-content span {
+    font-size: 15px;
+  }
+
+  .announcement-content i {
+    margin: 0 22px;
+  }
+
+  .servicios-header {
+    margin-bottom: 50px;
+  }
+
+  .servicio-item {
+    padding: 60px 0;
+  }
+
+  .servicio-contenido ul {
+    grid-template-columns: 1fr;
+  }
+
+  .servicio-imagen {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .servicios-cta {
+    padding: 65px 25px;
+  }
+}
+
+
+/* Respeta usuarios que prefieren menos animación */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .announcement-track {
+    animation: none;
+  }
+
+  .slide,
+  .servicio-imagen img,
+  .menu-list,
+  .menu-toggle > span {
+    transition: none;
+  }
+}
+
+/* =====================================================
+   AUCARIA — RESPONSIVE UX/UI FINAL
+   Esta capa solo actúa en tablet/mobile para preservar
+   la composición original de escritorio.
+===================================================== */
+
+@media (max-width: 900px) {
+
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* HEADER / NAVEGACIÓN */
+  .site-header {
+    padding: 0;
+  }
+
+  .logo-wrap {
+    min-height: 68px;
+    padding: 8px 20px;
+  }
+
+  .site-logo {
+    height: 54px;
+    max-width: 170px;
+  }
+
+  .main-nav {
+    width: 100%;
+    min-height: 56px;
+    position: relative;
+    background: #000;
+    border-block: 4px solid var(--verde);
+  }
+
+  .menu-toggle {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
+  }
+
+  .menu-toggle > span:not(.sr-only) {
+    width: 25px;
+    height: 2px;
+    background: #fff;
+    border-radius: 99px;
+  }
+
+  .menu-list {
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 8px 18px 16px;
+    background: #000;
+    border-top: 1px solid rgba(255,255,255,.09);
+    box-shadow: 0 18px 40px rgba(0,0,0,.2);
+  }
+
+  .menu-list li {
+    border-bottom: 1px solid rgba(255,255,255,.09);
+  }
+
+  .menu-list a {
+    color: #fff;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 8px;
+    font-size: 14px;
+  }
+
+  /* Mantiene exactamente la proporción del banner desktop (2560×958). */
+  .hero-slider {
+    width: 100%;
+    aspect-ratio: 2560 / 958;
+  }
+
+  .slide > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .slider-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .slider-prev { left: 12px; }
+  .slider-next { right: 12px; }
+
+  .slider-dots {
+    bottom: 12px;
+    gap: 8px;
+  }
+
+  .slider-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* KITS */
+  .kits-container,
+  .aucaria-main-services,
+  .cute-process-container,
+  .biblioteca-container,
+  .contact-container {
+    max-width: calc(100% - 36px);
+  }
+
+  .kits-slider {
+    overflow: hidden;
+    touch-action: pan-y;
+  }
+
+  .kits-track {
+    will-change: transform;
+  }
+
+  .kits-arrow:disabled {
+    opacity: .35;
+    cursor: default;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* SISTEMA AUCARIA */
+  .cute-table,
+  .contact-form-card,
+  .garden-message {
+    max-width: 100%;
+  }
+
+  /* CONTACTO */
+  .contact-content {
+    gap: 30px;
+  }
+
+  .contact-garden {
+    overflow: hidden;
+  }
+
+  /* Mejor interacción táctil */
+  .kits-arrow,
+  .kit-button,
+  .cute-process-button,
+  .contact-submit,
+  .ebook-info a,
+  .biblioteca-books a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@media (max-width: 700px) {
+
+  /* Ritmo vertical consistente */
+  .aucaria-kits,
+  .aucaria-cute-process,
+  .aucaria-contact {
+    padding-top: 68px;
+    padding-bottom: 68px;
+  }
+
+  .aucaria-services {
+    padding-top: 72px;
+    padding-bottom: 54px;
+  }
+
+  /* HERO: misma relación que escritorio, sin recorte vertical mobile. */
+  .hero-slider {
+    aspect-ratio: 2560 / 958;
+  }
+
+  .slide::after {
+    display: none;
+  }
+
+  .slider-arrow {
+    display: none;
+  }
+
+  .slider-dots {
+    bottom: 8px;
+  }
+
+  .slider-dot {
+    width: 7px;
+    height: 7px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.08);
+  }
+
+  .announcement-bar {
+    padding: 14px 0;
+  }
+
+  .announcement-content span {
+    font-size: 13px;
+  }
+
+  .announcement-content i {
+    margin: 0 18px;
+  }
+
+  /* KITS */
+  .kits-container,
+  .cute-process-container,
+  .biblioteca-container,
+  .contact-container {
+    width: calc(100% - 28px);
+    max-width: none;
+  }
+
+  .kits-heading {
+    gap: 24px;
+    margin-bottom: 38px;
+  }
+
+  .kits-heading h2 {
+    font-size: clamp(36px, 10vw, 44px);
+    line-height: .98;
+  }
+
+  .kits-heading p {
+    margin-top: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .kits-side-message {
+    width: 100%;
+    padding: 14px 16px;
+  }
+
+  .kits-slider-top {
+    align-items: flex-end;
+    gap: 16px;
+  }
+
+  .kits-slider-top h3 {
+    font-size: clamp(22px, 6.3vw, 27px);
+  }
+
+  .kits-controls {
+    flex-shrink: 0;
+  }
+
+  .kits-arrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  .kits-slider {
+    margin-right: -14px;
+    padding-right: 14px;
+    padding-bottom: 26px;
+  }
+
+  .kit-card {
+    flex-basis: min(88%, 340px);
+    min-height: 500px;
+  }
+
+  .kits-footer {
+    gap: 14px;
+    padding-top: 20px;
+  }
+
+ .kits-footer > a {
+  width: 100%;
+  flex-basis: 100%;
+  padding-left: 56px;
+  margin-left: 0;
+}
+
+  /* SERVICIOS */
+  .aucaria-services-header {
+    width: calc(100% - 28px);
+    margin-bottom: 38px;
+  }
+
+  .aucaria-services-header h2 {
+    font-size: clamp(34px, 10vw, 45px);
+  }
+
+  .aucaria-services-header p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .aucaria-main-services {
+    width: calc(100% - 28px);
+    max-width: none;
+  }
+
+  .aucaria-service-card {
+    min-height: 230px;
+    padding: 26px 23px 24px;
+    animation-duration: 8s;
+  }
+
+  .service-icon {
+    margin-bottom: 24px;
+  }
+
+  /* PROCESO */
+  .cute-process-heading {
+    margin-bottom: 34px;
+  }
+
+  .cute-process-heading h2 {
+    font-size: clamp(35px, 10vw, 43px);
+  }
+
+  .cute-process-heading p {
+    font-size: 15px;
+  }
+
+  .cute-header-before,
+  .cute-header-aucaria,
+  .cute-before,
+  .cute-aucaria {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .cute-aucaria {
+    padding-right: 50px;
+  }
+
+  .cute-process-footer {
+    gap: 18px;
+  }
+
+  /* BIBLIOTECA */
+  .biblioteca-header h2 {
+    font-size: clamp(24px, 7vw, 30px);
+    letter-spacing: .1em;
+    overflow-wrap: anywhere;
+  }
+
+  .biblioteca-books {
+    width: min(100%, 390px);
+    gap: 38px;
+  }
+
+  .ebook-image {
+    width: min(100%, 360px);
+  }
+
+  .ebook-info {
+    margin-top: 14px;
+  }
+
+  /* CONTACTO */
+  .contact-heading {
+    margin-bottom: 40px;
+  }
+
+  .contact-heading h2 {
+    font-size: clamp(36px, 10vw, 44px);
+  }
+
+  .contact-intro {
+    font-size: 17px;
+  }
+
+  .contact-description {
+    font-size: 14px;
+  }
+
+  .contact-garden {
+    min-height: 390px;
+  }
+
+  .garden-message {
+    padding: 30px 22px;
+    border-radius: 24px;
+  }
+
+  .garden-message h3 {
+    font-size: clamp(29px, 8vw, 36px);
+  }
+
+  .garden-rose {
+    font-size: 72px;
+    right: 12px;
+    bottom: 62px;
+  }
+
+  .garden-note-1 {
+    left: 18px;
+    right: auto;
+    bottom: 138px;
+  }
+
+  .garden-note-2 {
+    right: 15px;
+    bottom: 205px;
+  }
+
+  .contact-form-card {
+    padding: 28px 20px;
+    border-radius: 24px;
+  }
+
+  .form-card-header {
+    gap: 11px;
+  }
+
+  .form-heart {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-mini-flower {
+    font-size: 18px !important;
+  }
+
+  .contact-ending {
+    margin-top: 45px;
+    gap: 10px;
+  }
+
+  /* FOOTER compacto y discreto. */
+  .aucaria-footer {
+    min-height: auto;
+    padding: 24px 20px;
+  }
+
+  .aucaria-footer-content {
+    margin-bottom: 0;
+  }
+
+  .footer-mini {
+    margin-bottom: 8px;
+  }
+
+  .footer-big-copy {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .footer-magic-line {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .logo-wrap {
+    min-height: 62px;
+  }
+
+  .site-logo {
+    height: 48px;
+  }
+
+  .main-nav {
+    min-height: 52px;
+  }
+
+  /* Inputs >=16px evita zoom automático en iOS. */
+  .aucaria-form input,
+  .aucaria-form textarea {
+    font-size: 16px;
+  }
+
+  .contact-form-card {
+    padding: 24px 16px;
+  }
+
+  .form-card-header h3 {
+    font-size: 21px;
+  }
+
+  .kit-card {
+    flex-basis: 91%;
+    padding: 23px;
+  }
+
+  .kit-card h3 {
+    font-size: 28px;
+  }
+
+  .cute-header-before h3,
+  .cute-header-aucaria h3 {
+    font-size: 23px;
+  }
+
+  .cute-before,
+  .cute-aucaria {
+    gap: 12px;
+  }
+
+  .bad-emoji,
+  .good-icon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .kit-card:hover,
+  .aucaria-service-card:hover,
+  .ebook-item:hover .ebook-image,
+  .cute-process-button:hover,
+  .contact-submit:hover,
+  .kits-arrow:hover {
+    transform: none;
+  }
+}
+
+/* =====================================================
+   SISTEMA AUCARIA — IMAGEN ALTERNATIVA TABLET / MOBILE
+   Desktop conserva la tabla HTML original.
+===================================================== */
+
+.cute-table-mobile {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .aucaria-cute-process .cute-table {
+    display: none;
+  }
+
+  .aucaria-cute-process .cute-table-mobile {
+    display: block;
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .aucaria-cute-process .cute-table-mobile img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1080 / 1920;
+    object-fit: contain;
+  }
+}
+
+/* =====================================================
+   AUCARIA — AJUSTES TABLET / MOBILE
+   Desktop (>1024px) permanece sin cambios.
+   - Servicios individuales: carrusel horizontal nativo
+   - Biblioteca: carrusel horizontal nativo
+   - Contacto: nota reposicionada + eliminación del vacío
+===================================================== */
+
+@media (max-width: 1024px) {
+
+  /* ==============================================
+     SERVICIOS INDIVIDUALES — CARRUSEL HORIZONTAL
+  ============================================== */
+  .aucaria-main-services {
+    display: flex;
+    grid-template-columns: none;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    touch-action: pan-x pan-y;
+    padding-bottom: 14px;
+  }
+
+  .aucaria-main-services::-webkit-scrollbar {
+    display: none;
+  }
+
+  .aucaria-service-card {
+    flex: 0 0 85%;
+    width: 85%;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+
+  /* ==============================================
+     BIBLIOTECA — CARRUSEL HORIZONTAL
+  ============================================== */
+  .biblioteca-books {
+    width: 100%;
+    max-width: none;
+    display: flex;
+    grid-template-columns: none;
+    align-items: flex-end;
+    gap: 22px;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    touch-action: pan-x pan-y;
+    padding: 12px 0 18px;
+    margin: 28px 0 0;
+  }
+
+  .biblioteca-books::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ebook-item {
+    flex: 0 0 min(78%, 650px);
+    width: min(78%, 650px);
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+
+  /* En pantallas táctiles la información no depende del hover. */
+  .ebook-info {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ==============================================
+     CONTACTO — COMPACTAR + REUBICAR NOTITA
+  ============================================== */
+  .contact-content {
+    gap: 24px;
+  }
+
+  .contact-garden {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .garden-note-1 {
+    top: 18px;
+    right: 18px;
+    bottom: auto;
+    left: auto;
+  }
+}
+
+@media (max-width: 700px) {
+
+  /* Un servicio protagonista + una parte del siguiente visible. */
+  .aucaria-main-services {
+    width: calc(100% - 28px);
+    gap: 14px;
+  }
+
+  .aucaria-service-card {
+    flex-basis: 86%;
+    width: 86%;
+  }
+
+  /* Un ebook protagonista + una parte del siguiente visible. */
+  .biblioteca-books {
+    width: 100%;
+    max-width: none;
+    gap: 18px;
+    margin: 28px 0 0;
+  }
+
+  .ebook-item {
+    flex: 0 0 84%;
+    width: 84%;
+  }
+
+  .ebook-image {
+    width: 100%;
+    max-width: none;
+  }
+
+  /* Evita que la notita se superponga con “Contame eso…”. */
+  .garden-note-1 {
+    top: 16px;
+    right: 14px;
+    left: auto;
+    bottom: auto;
+    padding: 9px 11px;
+    font-size: 8px;
+    line-height: 1.35;
+  }
+
+  .garden-message h3 {
+    padding-right: 88px;
+  }
+
+  /* Quita el alto artificial que generaba el gran espacio vacío. */
+  .contact-garden {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .contact-content {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .garden-message h3 {
+    padding-right: 76px;
+  }
+
+  .garden-note-1 {
+    right: 10px;
+    padding: 8px 9px;
+    font-size: 7.5px;
+  }
+}
+
+/* =====================================================
+   AJUSTES AUCARIA — MENÚ LATERAL MOBILE + FONDO SERVICIOS
+   + RESALTADO "TU IDEA?"
+===================================================== */
+
+/* La sección de servicios usa la misma imagen de fondo de la biblioteca. */
+.aucaria-services {
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(0, 27, 33, .64) 0%,
+      rgba(0, 27, 33, .72) 52%,
+      rgba(0, 20, 25, .82) 100%
+    ),
+    url("img/fondo-biblioteca-aucaria.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Efecto de selección sobre "tu idea?" al entrar en contacto. */
+.idea-highlight {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+  isolation: isolate;
+  color: var(--contact-green);
+  white-space: nowrap;
+}
+
+.idea-highlight::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -.08em;
+  right: -.08em;
+  top: .05em;
+  bottom: -.02em;
+  background: #a4789c;
+  border-radius: .08em;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.idea-highlight::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  color: #fff;
+  pointer-events: none;
+  clip-path: inset(0 100% 0 0);
+}
+
+.idea-highlight.is-selected::before {
+  animation: aucariaIdeaSelection .9s cubic-bezier(.22,.75,.2,1) forwards;
+}
+
+.idea-highlight.is-selected::after {
+  animation: aucariaIdeaTextSelection .9s cubic-bezier(.22,.75,.2,1) forwards;
+}
+
+/* Variante del mismo resaltado para “ELEGÍ TU KIT”. */
+.kits-title-highlight {
+  color: var(--kits-green);
+  font-weight: 800;
+  padding: .10em .12em;
+  margin-left: -.12em;
+}
+
+.kits-title-highlight::before {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #a4789c;
+  border-radius: .12em;
+}
+
+.kits-title-highlight::after {
+  inset: .10em .12em;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
+
+@keyframes aucariaIdeaSelection {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes aucariaIdeaTextSelection {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+/* Menú móvil: logo + botón a la derecha, separado por bordes verticales. */
+@media (max-width: 900px) {
+  .site-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 72px;
+    align-items: stretch;
+    padding: 0;
+    background: #000;
+  }
+
+  .logo-wrap {
+    grid-column: 1;
+    min-width: 0;
+    min-height: 72px;
+    height: 72px;
+    padding: 8px 18px;
+    justify-content: center;
+  }
+
+  .site-logo {
+    height: 54px;
+    max-width: min(170px, 70vw);
+  }
+
+  .main-nav {
+    grid-column: 2;
+    width: 72px;
+    min-height: 72px;
+    height: 72px;
+    position: relative;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    border-top: 0;
+    border-left: 1px solid var(--verde);
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  .menu-toggle {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+
+  .menu-list {
+    position: fixed;
+    z-index: 55;
+    top: 76px;
+    right: 0;
+    left: auto;
+    width: min(82vw, 340px);
+    height: calc(100dvh - 76px);
+    max-height: calc(100dvh - 76px);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 10px 18px 24px;
+    overflow-y: auto;
+    background: #000;
+    border-top: 0;
+    border-left: 4px solid var(--verde);
+    box-shadow: -18px 22px 42px rgba(0,0,0,.28);
+
+    opacity: 1;
+    visibility: hidden;
+    transform: translateX(105%);
+    pointer-events: none;
+    transition: transform .32s cubic-bezier(.22,.75,.2,1), visibility .32s ease;
+  }
+
+  .menu-list.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  .menu-list li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,.11);
+  }
+
+  .menu-list li:last-child {
+    border-bottom: 0;
+  }
+
+  .menu-list a {
+    min-height: 54px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 14px 8px;
+    color: #fff;
+    text-align: left;
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .idea-highlight.is-selected::before,
+  .idea-highlight.is-selected::after {
+    animation-duration: .01ms !important;
+  }
+}
+
+
+
+/* =====================================================
+   HERO — IMAGEN ESPECÍFICA PARA CELULAR
+   Desktop + tablet: banner-aucaria.png
+   Mobile (<=600px): banner-mobile.png
+===================================================== */
+@media (max-width: 600px) {
+  .hero-slider {
+    aspect-ratio: 1080 / 1065;
+  }
+
+  .slide > .hero-picture,
+  .slide > .hero-picture > img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .slide > .hero-picture > img {
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+
+.kits-river { display: none !important; }
+
+
+/* =====================================================
+   AJUSTE FINAL — BANNER MOBILE COMPLETO
+   La barra-río comienza recién cuando termina la imagen.
+===================================================== */
+@media (max-width: 600px) {
+
+  .hero-slider {
+    aspect-ratio: 1080 / 1065;
+    height: auto;
+  }
+
+  .slider-track,
+  .slide,
+  .slide > .hero-picture,
+  .slide > .hero-picture > img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .slide > .hero-picture > img {
+    object-fit: contain;
+    object-position: center center;
+  }
+
+}
+
+
+
+/* =====================================================
+   AJUSTE VISUAL — BLOQUES DE SERVICIOS MÁS ELEGANTES Y CUTE
+   Inspirado en la imagen de referencia generada
+===================================================== */
+
+.aucaria-services {
+  --as-card-green-deep: #0f2f31;
+  --as-card-green-soft: rgba(25, 87, 88, .58);
+  --as-card-plum-deep: #362236;
+  --as-card-plum-soft: rgba(123, 83, 116, .44);
+  --as-border-green: rgba(236, 197, 163, .40);
+  --as-border-plum: rgba(230, 182, 214, .34);
+  --as-glow-green: rgba(47, 123, 120, .18);
+  --as-glow-plum: rgba(166, 107, 153, .18);
+}
+
+.aucaria-service-card {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.065), transparent 38%),
+    linear-gradient(180deg, rgba(9, 26, 28, .18), transparent 46%),
+    linear-gradient(145deg, var(--as-card-green-soft), var(--as-card-green-deep));
+
+  border: 1px solid var(--as-border-green);
+
+  box-shadow:
+    0 16px 34px rgba(0,0,0,.16),
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 0 0 1px rgba(255,255,255,.02);
+}
+
+.card-2,
+.card-4 {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.065), transparent 38%),
+    linear-gradient(180deg, rgba(19, 10, 22, .12), transparent 46%),
+    linear-gradient(145deg, var(--as-card-plum-soft), var(--as-card-plum-deep));
+
+  border-color: var(--as-border-plum);
+}
+
+.aucaria-service-card:hover {
+  border-color: rgba(255,255,255,.28);
+
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.075), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.03), transparent 46%),
+    linear-gradient(145deg, rgba(45, 120, 120, .66), #102f31);
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.22),
+    0 10px 30px var(--as-glow-green),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.card-2:hover,
+.card-4:hover {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.075), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.03), transparent 46%),
+    linear-gradient(145deg, rgba(126, 80, 118, .62), #332033);
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.22),
+    0 10px 30px var(--as-glow-plum),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+/* Un detallito extra para que el bloque se sienta más premium */
+.aucaria-service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), transparent 18%, transparent 82%, rgba(255,255,255,.02));
+  opacity: .9;
+}
+
+
+/* Unión visual río → Kits: evita una línea de subpíxel entre secciones. */
+.announcement-bar {
+  margin-bottom: -1px;
+}
+
+.aucaria-kits {
+  border-top: 1px solid var(--section-light-bg);
+}
+
+
+/* =====================================================
+   PRELOADER AUCARIA — LOGO GIRANDO LENTO
+===================================================== */
+
+body.preloader-active {
+  overflow: hidden;
+}
+
+.aucaria-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: grid;
+  place-items: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(18, 59, 63, .36) 0%,
+      rgba(14, 50, 53, .14) 24%,
+      rgba(0, 0, 0, 0) 52%
+    ),
+    #000;
+
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+
+  transition:
+    opacity .7s cubic-bezier(.22, 1, .36, 1),
+    visibility .7s linear;
+}
+
+.aucaria-preloader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.aucaria-preloader-inner {
+  position: relative;
+  width: 170px;
+  height: 170px;
+
+  display: grid;
+  place-items: center;
+}
+
+.aucaria-preloader-halo {
+  position: absolute;
+  inset: 18px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(165, 121, 157, .14) 0%,
+    rgba(18, 59, 63, .11) 48%,
+    transparent 72%
+  );
+
+  filter: blur(12px);
+  animation: aucariaLoaderGlow 3.4s ease-in-out infinite;
+}
+
+.aucaria-preloader-logo {
+  position: relative;
+  z-index: 2;
+
+  width: 118px;
+  height: auto;
+
+  object-fit: contain;
+
+  animation: aucariaLoaderSpin 7s linear infinite;
+  will-change: transform;
+}
+
+@keyframes aucariaLoaderSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes aucariaLoaderGlow {
+  0%, 100% {
+    opacity: .45;
+    transform: scale(.94);
+  }
+
+  50% {
+    opacity: .9;
+    transform: scale(1.06);
+  }
+}
+
+@media (max-width: 600px) {
+  .aucaria-preloader-inner {
+    width: 145px;
+    height: 145px;
+  }
+
+  .aucaria-preloader-logo {
+    width: 96px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aucaria-preloader-logo {
+    animation: none;
+  }
+
+  .aucaria-preloader-halo {
+    animation: none;
+  }
+}
