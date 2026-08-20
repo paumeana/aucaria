@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="100%" height="100%" fill="#a5799d"/>
+  <circle cx="936" cy="198" r="252" fill="none" stroke="#472b51" stroke-opacity=".45" stroke-width="2"/>
+  <circle cx="983" cy="252" r="162" fill="none" stroke="#ffffff" stroke-opacity=".12" stroke-width="2"/>
+  <text x="96" y="495" fill="#ffffff" font-family="Arial, sans-serif" font-size="72" font-weight="600">E-COMMERCE</text>
+  <text x="96" y="585" fill="#ffffff" fill-opacity=".7" font-family="Arial, sans-serif" font-size="28">Tu imagen acá</text>
+</svg>
